@@ -100,7 +100,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Property<string>("Logo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MountainId")
+                    b.Property<int?>("MountainId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -113,7 +113,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.ToTable("Peaks");
                 });
 
-            modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Peak_Mountain", b =>
+            modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Peaks_Mountains", b =>
                 {
                     b.Property<int>("PeakId")
                         .HasColumnType("int");
@@ -144,7 +144,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Property<string>("Highlights")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LandmarkId")
+                    b.Property<int?>("LandmarksId")
                         .HasColumnType("int");
 
                     b.Property<int>("MountainId")
@@ -164,7 +164,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
                     b.HasKey("TrackId");
 
-                    b.HasIndex("LandmarkId");
+                    b.HasIndex("LandmarksId");
 
                     b.HasIndex("MountainId");
 
@@ -234,13 +234,13 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Landmark", "Landmark")
                         .WithMany("Landmarks_Mountains")
                         .HasForeignKey("LandmarkId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Mountain", "Mountain")
                         .WithMany("Landmarks_Mountains")
                         .HasForeignKey("MountainId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Landmark");
@@ -250,27 +250,23 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Peak", b =>
                 {
-                    b.HasOne("Mountain_Trips_and_Landmarks.Models.Mountain", "Mountain")
+                    b.HasOne("Mountain_Trips_and_Landmarks.Models.Mountain", null)
                         .WithMany("Peaks")
-                        .HasForeignKey("MountainId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Mountain");
+                        .HasForeignKey("MountainId");
                 });
 
-            modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Peak_Mountain", b =>
+            modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Peaks_Mountains", b =>
                 {
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Mountain", "Mountain")
                         .WithMany("Peaks_Mountains")
                         .HasForeignKey("MountainId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Peak", "Peak")
                         .WithMany("Peaks_Mountains")
                         .HasForeignKey("PeakId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Mountain");
@@ -280,11 +276,9 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Track", b =>
                 {
-                    b.HasOne("Mountain_Trips_and_Landmarks.Models.Landmark", "Landmark")
+                    b.HasOne("Mountain_Trips_and_Landmarks.Models.Landmark", null)
                         .WithMany("Tracks")
-                        .HasForeignKey("LandmarkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LandmarksId");
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Mountain", "Mountain")
                         .WithMany("Tracks")
@@ -297,8 +291,6 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                         .HasForeignKey("PeakId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Landmark");
 
                     b.Navigation("Mountain");
 
@@ -310,13 +302,13 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Landmark", "Landmark")
                         .WithMany("Tracks_Landmarks")
                         .HasForeignKey("LandmarkId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Track", "Track")
                         .WithMany("Tracks_Landmarks")
                         .HasForeignKey("TrackId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Landmark");
@@ -329,13 +321,13 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Mountain", "Mountain")
                         .WithMany("Tracks_Mountains")
                         .HasForeignKey("MountainId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Track", "Track")
                         .WithMany("Tracks_Mountains")
                         .HasForeignKey("TrackId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Mountain");
@@ -348,13 +340,13 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Peak", "Peak")
                         .WithMany("Tracks_Peaks")
                         .HasForeignKey("PeakId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Track", "Track")
                         .WithMany("Tracks_Peaks")
                         .HasForeignKey("TrackId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Peak");

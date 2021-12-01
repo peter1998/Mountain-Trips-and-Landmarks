@@ -59,7 +59,7 @@ namespace Mountain_Trips_and_Landmarks
             });
 
             //Seed database
-            AppDbInitializer.Seed(app);
+          //  AppDbInitializer.Seed(app);
         }
     }
 }

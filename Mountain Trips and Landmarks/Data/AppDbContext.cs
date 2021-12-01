@@ -16,69 +16,95 @@ namespace Mountain_Trips_and_Landmarks.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Peak_Mountain>().HasKey(pm => new
-            {
-                pm.PeakId,
-                pm.MountainId
-            });
-           // modelBuilder.Entity<Peak_Mountain>().HasOne(m => m.Mountain)
-             //   .WithMany(pm => pm.Peaks_Mountains).HasForeignKey(m => m.MountainId);
-            //modelBuilder.Entity<Peak_Mountain>().HasOne(m => m.Peak)
-             //   .WithMany(pm => pm.Peaks_Mountains).HasForeignKey(m => m.PeakId);
+            //modelBuilder.Entity<Peaks_Mountains>()
+            //    .HasOne(m => m.Mountain)
+            //    .WithMany(p=>p.Peaks_Mountains)
+            //    .HasForeignKey(m => m.MountainId)
+            //    .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<Landmarks_Mountains>().HasKey(lm => new
+            //modelBuilder.Entity<Tracks_Mountains>()
+            //   .HasOne(m => m.Mountain)
+            //   .WithMany(p => p.Tracks_Mountains)
+            //   .HasForeignKey(m => m.MountainId)
+            //   .OnDelete(DeleteBehavior.NoAction);
+
+            //modelBuilder.Entity<Tracks_Peaks>()
+            //   .HasOne(m => m.Track)
+            //   .WithMany(p => p.Tracks_Peaks)
+            //   .HasForeignKey(m => m.TrackId)
+            //   .OnDelete(DeleteBehavior.NoAction);
+
+            //modelBuilder.Entity<Tracks_Landmarks>()
+            //   .HasOne(m => m.Track)
+            //   .WithMany(p => p.Tracks_Landmarks)
+            //   .HasForeignKey(m => m.TrackId)
+            //   .OnDelete(DeleteBehavior.NoAction);
+
+            //modelBuilder.Entity<Landmarks_Mountains>()
+            //   .HasOne(m => m.Landmark)
+            //   .WithMany(p => p.Landmarks_Mountains)
+            //   .HasForeignKey(m => m.LandmarkId)
+            //   .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Tracks_Peaks>().HasKey(am => new
             {
-                lm.LandmarkId,
-                lm.MountainId
+                am.TrackId,
+                am.PeakId
             });
 
-            //modelBuilder.Entity<Landmarks_Mountains>().HasOne(m => m.Mountain)
-            //    .WithMany(lm => lm.Landmarks_Mountains).HasForeignKey(m => m.MountainId);
-            //modelBuilder.Entity<Landmarks_Mountains>().HasOne(m => m.Landmark)
-            //    .WithMany(lm => lm.Landmarks_Mountains).HasForeignKey(m => m.LandmarkId);
+            modelBuilder.Entity<Tracks_Peaks>().HasOne(m => m.Track).WithMany(am => am.Tracks_Peaks).HasForeignKey(m => m.TrackId).OnDelete(DeleteBehavior.Restrict); 
+            modelBuilder.Entity<Tracks_Peaks>().HasOne(m => m.Peak).WithMany(am => am.Tracks_Peaks).HasForeignKey(m => m.PeakId).OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Tracks_Mountains>().HasKey(tm => new
+            modelBuilder.Entity<Peaks_Mountains>().HasKey(am => new
             {
-                tm.TrackId,
-                tm.MountainId
+                am.PeakId,
+                am.MountainId
             });
-           // modelBuilder.Entity<Tracks_Mountains>().HasOne(m => m.Mountain)
-            //    .WithMany(pm => pm.Tracks_Mountains).HasForeignKey(m => m.MountainId);
-            //modelBuilder.Entity<Tracks_Mountains>().HasOne(m => m.Track)
-            //    .WithMany(pm => pm.Tracks_Mountains).HasForeignKey(m => m.TrackId);
 
-            modelBuilder.Entity<Tracks_Peaks>().HasKey(tp => new
-            {
-                tp.TrackId,
-                tp.PeakId
-            });
-           // modelBuilder.Entity<Tracks_Peaks>().HasOne(p => p.Peak)
-              //  .WithMany(pm => pm.Tracks_Peaks).HasForeignKey(p => p.PeakId);
-            //modelBuilder.Entity<Tracks_Peaks>().HasOne(m => m.Track)
-            //    .WithMany(pm => pm.Tracks_Peaks).HasForeignKey(m => m.TrackId);
+            modelBuilder.Entity<Peaks_Mountains>().HasOne(m => m.Peak).WithMany(am => am.Peaks_Mountains).HasForeignKey(m => m.PeakId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Peaks_Mountains>().HasOne(m => m.Mountain).WithMany(am => am.Peaks_Mountains).HasForeignKey(m => m.MountainId).OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Tracks_Landmarks>().HasKey(tl => new
+            modelBuilder.Entity<Tracks_Landmarks>().HasKey(am => new
             {
-                tl.TrackId,
-                tl.LandmarkId
+                am.TrackId,
+                am.LandmarkId
             });
-           // modelBuilder.Entity<Tracks_Landmarks>().HasOne(l => l.Landmark)
-               // .WithMany(pm => pm.Tracks_Landmarks).HasForeignKey(l => l.LandmarkId);
-            //modelBuilder.Entity<Tracks_Landmarks>().HasOne(m => m.Track)
-            //    .WithMany(pm => pm.Tracks_Landmarks).HasForeignKey(m => m.TrackId);
+
+            modelBuilder.Entity<Tracks_Landmarks>().HasOne(m => m.Track).WithMany(am => am.Tracks_Landmarks).HasForeignKey(m => m.TrackId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Tracks_Landmarks>().HasOne(m => m.Landmark).WithMany(am => am.Tracks_Landmarks).HasForeignKey(m => m.LandmarkId).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Tracks_Mountains>().HasKey(am => new
+            {
+                am.TrackId,
+                am.MountainId
+            });
+
+            modelBuilder.Entity<Tracks_Mountains>().HasOne(m => m.Track).WithMany(am => am.Tracks_Mountains).HasForeignKey(m => m.TrackId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Tracks_Mountains>().HasOne(m => m.Mountain).WithMany(am => am.Tracks_Mountains).HasForeignKey(m => m.MountainId).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Landmarks_Mountains>().HasKey(am => new
+            {
+                am.LandmarkId,
+                am.MountainId
+            });
+
+            modelBuilder.Entity<Landmarks_Mountains>().HasOne(m => m.Landmark).WithMany(am => am.Landmarks_Mountains).HasForeignKey(m => m.LandmarkId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Landmarks_Mountains>().HasOne(m => m.Mountain).WithMany(am => am.Landmarks_Mountains).HasForeignKey(m => m.MountainId).OnDelete(DeleteBehavior.Restrict);
+
+
+
 
             base.OnModelCreating(modelBuilder);
         }
 
-
         public DbSet<Mountain> Mountains { get; set; }
         public DbSet<Peak> Peaks { get; set; }
         public DbSet<Track> Tracks { get; set; }
-        public DbSet<Landmark> Landmarks { get; set; }
-        public DbSet<Peak_Mountain> Peaks_Mountains { get; set; }
-        public DbSet<Tracks_Mountains> Tracks_Mountains { get; set; }
+       public DbSet<Landmark> Landmarks { get; set; }
+
         public DbSet<Tracks_Peaks> Tracks_Peaks { get; set; }
+        public DbSet<Peaks_Mountains> Peaks_Mountains { get; set; }
         public DbSet<Tracks_Landmarks> Tracks_Landmarks { get; set; }
+        public DbSet<Tracks_Mountains> Tracks_Mountains { get; set; }
         public DbSet<Landmarks_Mountains> Landmarks_Mountains { get; set; }
 
     }

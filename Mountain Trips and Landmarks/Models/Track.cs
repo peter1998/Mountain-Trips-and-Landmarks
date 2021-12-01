@@ -26,23 +26,19 @@ namespace Mountain_Trips_and_Landmarks.Models
 
         public List<Tracks_Peaks> Tracks_Peaks { get; set; }
 
+         public List<Tracks_Landmarks> Tracks_Landmarks { get; set; }
+
         public List<Tracks_Mountains> Tracks_Mountains { get; set; }
 
-        public List<Tracks_Landmarks> Tracks_Landmarks { get; set; }
-
         //Mountain
+
         public int MountainId { get; set; }
 
         public Mountain Mountain { get; set; }
 
-        //Peak
+       
         public int PeakId { get; set; }
 
         public Peak Peak { get; set; }
-
-        //Landmark
-        public int LandmarkId { get; set; }
-
-        public Landmark  Landmark { get; set; }
     }
 }

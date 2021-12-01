@@ -214,7 +214,7 @@ namespace Mountain_Trips_and_Landmarks.Data
                                 },
 
                             });
-                        //Tracks_Mountains
+                        // Tracks_Mountains
                         if (!context.Tracks_Mountains.Any())
                         {
                             context.Tracks_Mountains.AddRange(new List<Tracks_Mountains>()
@@ -241,11 +241,11 @@ namespace Mountain_Trips_and_Landmarks.Data
                                 },
 
                             });
-                        }
-                        //Tracks_Peaks
-                        if (!context.Tracks_Peaks.Any())
-                        {
-                            context.Tracks_Peaks.AddRange(new List<Tracks_Peaks>()
+
+                            //Tracks_Peaks
+                            if (!context.Tracks_Peaks.Any())
+                            {
+                                context.Tracks_Peaks.AddRange(new List<Tracks_Peaks>()
                             {
                                 new Tracks_Peaks()
                                 {
@@ -269,62 +269,37 @@ namespace Mountain_Trips_and_Landmarks.Data
                                 },
 
                             });
-                        }
-                        //Peak_Mountain
-                        if (!context.Peaks_Mountains.Any())
-                        {
-                            context.Peaks_Mountains.AddRange(new List<Peak_Mountain>()
+                            }
+                            //Peak_Mountain
+                            if (!context.Peaks_Mountains.Any())
                             {
-                                new Peak_Mountain()
+                                context.Peaks_Mountains.AddRange(new List<Peaks_Mountains>()
+                            {
+                                new Peaks_Mountains()
                                 {
                                     PeakId = 1,
                                     MountainId = 1
                                 },
-                                 new Peak_Mountain()
+                                 new Peaks_Mountains()
                                 {
                                     PeakId = 2,
                                     MountainId = 2
                                 },
-                                  new Peak_Mountain()
+                                  new Peaks_Mountains()
                                 {
                                     PeakId = 3,
                                     MountainId = 3
                                 },
-                                   new Peak_Mountain()
+                                   new Peaks_Mountains()
                                 {
                                     PeakId = 4,
                                     MountainId = 4
                                 },
 
                             });
-                        }
-                        //Landmars_Mountains
-                        if (!context.Landmarks_Mountains.Any())
-                        {
-                            context.Landmarks_Mountains.AddRange(new List<Landmarks_Mountains>()
-                            {
-                                new Landmarks_Mountains()
-                                {
-                                    LandmarkId = 1,
-                                    MountainId = 1
-                                },
-                                 new Landmarks_Mountains()
-                                {
-                                    LandmarkId = 2,
-                                    MountainId = 2
-                                },
-                                  new Landmarks_Mountains()
-                                {
-                                    LandmarkId = 3,
-                                    MountainId = 3
-                                },
-                                   new Landmarks_Mountains()
-                                {
-                                    LandmarkId = 4,
-                                    MountainId = 4
-                                },
+                            }
+                            //Landmarks_Mountains
 
-                            });
                             context.SaveChanges();
                         }
                     }
@@ -333,3 +308,5 @@ namespace Mountain_Trips_and_Landmarks.Data
         }
     }
 }
+
+

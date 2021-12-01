@@ -17,18 +17,14 @@ namespace Mountain_Trips_and_Landmarks.Models
         public string Description { get; set; }
 
         //Relationships
-        public List<Peak_Mountain> Peaks_Mountains { get; set; }
+        public List<Peaks_Mountains> Peaks_Mountains { get; set; }
 
         public List<Tracks_Peaks> Tracks_Peaks { get; set; }
 
-        //Mountain
-        public int MountainId { get; set; }
-
-        public Mountain Mountain { get; set; }
-
         //Track
-        
-        public List<Track> Tracks { get; set; }
+       public List<Track> Tracks { get; set; }
+      //  public List<Mountain> Mountains { get; set; }
+
 
     }
 }
