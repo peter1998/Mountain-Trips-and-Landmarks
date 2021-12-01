@@ -18,5 +18,25 @@ namespace Mountain_Trips_and_Landmarks.Models
         public int TrekkingTime { get; set; }
 
         public string Description { get; set; }
+
+        //Relationships
+        public List<Peak_Mountain> Peaks_Mountains { get; set; }
+
+        public List<Landmarks_Mountains> Landmarks_Mountains { get; set; }
+
+        public List<Tracks_Mountains> Tracks_Mountains { get; set; }
+
+        //Track 
+
+        public List<Track> Tracks { get; set; }
+
+        //Landmark 
+
+        public List<Landmark> Landmarks { get; set; }
+
+        //Peak
+
+        public List<Peak> Peaks { get; set; }
+
     }
 }

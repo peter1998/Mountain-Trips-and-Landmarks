@@ -15,5 +15,6 @@ namespace Mountain_Trips_and_Landmarks.Data
         FreerideCycle =6,
         Downhill = 7,
         Enduro = 8,
+        Ski = 9,
     }
 }
