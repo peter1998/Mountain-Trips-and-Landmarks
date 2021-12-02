@@ -9,7 +9,7 @@ namespace Mountain_Trips_and_Landmarks.Models
     public class Mountain
     {
         [Key]
-        public int MountainId { get; set; }
+        public int? MountainId { get; set; }
 
         public string MountainPictureURL { get; set; }
 

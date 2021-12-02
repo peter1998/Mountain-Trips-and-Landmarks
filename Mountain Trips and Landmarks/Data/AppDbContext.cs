@@ -9,13 +9,15 @@ namespace Mountain_Trips_and_Landmarks.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) :base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Test Round1
+
             //modelBuilder.Entity<Peaks_Mountains>()
             //    .HasOne(m => m.Mountain)
             //    .WithMany(p=>p.Peaks_Mountains)
@@ -45,14 +47,17 @@ namespace Mountain_Trips_and_Landmarks.Data
             //   .WithMany(p => p.Landmarks_Mountains)
             //   .HasForeignKey(m => m.LandmarkId)
             //   .OnDelete(DeleteBehavior.NoAction);
+
+            //Test Round2
+
             modelBuilder.Entity<Tracks_Peaks>().HasKey(am => new
             {
                 am.TrackId,
                 am.PeakId
             });
 
-            modelBuilder.Entity<Tracks_Peaks>().HasOne(m => m.Track).WithMany(am => am.Tracks_Peaks).HasForeignKey(m => m.TrackId).OnDelete(DeleteBehavior.Restrict); 
-            modelBuilder.Entity<Tracks_Peaks>().HasOne(m => m.Peak).WithMany(am => am.Tracks_Peaks).HasForeignKey(m => m.PeakId).OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<Tracks_Peaks>().HasOne(m => m.Track).WithMany(am => am.Tracks_Peaks).HasForeignKey(m => m.TrackId).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Tracks_Peaks>().HasOne(m => m.Peak).WithMany(am => am.Tracks_Peaks).HasForeignKey(m => m.PeakId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Peaks_Mountains>().HasKey(am => new
             {
@@ -81,6 +86,7 @@ namespace Mountain_Trips_and_Landmarks.Data
             modelBuilder.Entity<Tracks_Mountains>().HasOne(m => m.Track).WithMany(am => am.Tracks_Mountains).HasForeignKey(m => m.TrackId).OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Tracks_Mountains>().HasOne(m => m.Mountain).WithMany(am => am.Tracks_Mountains).HasForeignKey(m => m.MountainId).OnDelete(DeleteBehavior.Restrict);
 
+            // ? samo landmarsk_Mountains mrunka purvo
             modelBuilder.Entity<Landmarks_Mountains>().HasKey(am => new
             {
                 am.LandmarkId,
@@ -90,16 +96,13 @@ namespace Mountain_Trips_and_Landmarks.Data
             modelBuilder.Entity<Landmarks_Mountains>().HasOne(m => m.Landmark).WithMany(am => am.Landmarks_Mountains).HasForeignKey(m => m.LandmarkId).OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Landmarks_Mountains>().HasOne(m => m.Mountain).WithMany(am => am.Landmarks_Mountains).HasForeignKey(m => m.MountainId).OnDelete(DeleteBehavior.Restrict);
 
-
-
-
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Mountain> Mountains { get; set; }
         public DbSet<Peak> Peaks { get; set; }
         public DbSet<Track> Tracks { get; set; }
-       public DbSet<Landmark> Landmarks { get; set; }
+        public DbSet<Landmark> Landmarks { get; set; }
 
         public DbSet<Tracks_Peaks> Tracks_Peaks { get; set; }
         public DbSet<Peaks_Mountains> Peaks_Mountains { get; set; }

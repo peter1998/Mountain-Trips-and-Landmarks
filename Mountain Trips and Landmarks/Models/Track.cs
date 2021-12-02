@@ -32,12 +32,12 @@ namespace Mountain_Trips_and_Landmarks.Models
 
         //Mountain
 
-        public int MountainId { get; set; }
+        public int? MountainId { get; set; }
 
         public Mountain Mountain { get; set; }
 
        
-        public int PeakId { get; set; }
+        public int? PeakId { get; set; }
 
         public Peak Peak { get; set; }
     }

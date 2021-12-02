@@ -35,7 +35,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Property<string>("LandmarkPictureURL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MountainId")
+                    b.Property<int?>("MountainId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -53,7 +53,10 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Property<int>("LandmarkId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MountainId")
+                    b.Property<int?>("MountainId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("LandmarkId", "MountainId");
@@ -65,7 +68,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Mountain", b =>
                 {
-                    b.Property<int>("MountainId")
+                    b.Property<int?>("MountainId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -115,10 +118,13 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Peaks_Mountains", b =>
                 {
-                    b.Property<int>("PeakId")
+                    b.Property<int?>("PeakId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MountainId")
+                    b.Property<int?>("MountainId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("PeakId", "MountainId");
@@ -147,10 +153,10 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Property<int?>("LandmarksId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MountainId")
+                    b.Property<int?>("MountainId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PeakId")
+                    b.Property<int?>("PeakId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
@@ -178,7 +184,10 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Property<int>("TrackId")
                         .HasColumnType("int");
 
-                    b.Property<int>("LandmarkId")
+                    b.Property<int?>("LandmarkId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("TrackId", "LandmarkId");
@@ -190,10 +199,13 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Tracks_Mountains", b =>
                 {
-                    b.Property<int>("TrackId")
+                    b.Property<int?>("TrackId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MountainId")
+                    b.Property<int?>("MountainId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("TrackId", "MountainId");
@@ -205,10 +217,10 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Tracks_Peaks", b =>
                 {
-                    b.Property<int>("TrackId")
+                    b.Property<int?>("TrackId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PeakId")
+                    b.Property<int?>("PeakId")
                         .HasColumnType("int");
 
                     b.HasKey("TrackId", "PeakId");
@@ -222,9 +234,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 {
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Mountain", "Mountain")
                         .WithMany("Landmarks")
-                        .HasForeignKey("MountainId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MountainId");
 
                     b.Navigation("Mountain");
                 });
@@ -282,15 +292,11 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Mountain", "Mountain")
                         .WithMany("Tracks")
-                        .HasForeignKey("MountainId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MountainId");
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Peak", "Peak")
                         .WithMany("Tracks")
-                        .HasForeignKey("PeakId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PeakId");
 
                     b.Navigation("Mountain");
 
@@ -340,13 +346,13 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Peak", "Peak")
                         .WithMany("Tracks_Peaks")
                         .HasForeignKey("PeakId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Track", "Track")
                         .WithMany("Tracks_Peaks")
                         .HasForeignKey("TrackId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Peak");

@@ -18,7 +18,6 @@ namespace Mountain_Trips_and_Landmarks.Data
 
                 context.Database.EnsureCreated();
 
-                //Mountains
                 if (!context.Mountains.Any())
                 {
                     context.Mountains.AddRange(new List<Mountain>()
@@ -59,7 +58,7 @@ namespace Mountain_Trips_and_Landmarks.Data
                         }
                     });
                 }
-                //Landmarks
+                
                 if (!context.Landmarks.Any())
                 {
                     context.Landmarks.AddRange(new List<Landmark>()
@@ -106,7 +105,7 @@ namespace Mountain_Trips_and_Landmarks.Data
                         },
                     });
                 }
-                //Tracks
+
                 if (!context.Tracks.Any())
                 {
                     context.Tracks.AddRange(new List<Track>()
@@ -153,7 +152,6 @@ namespace Mountain_Trips_and_Landmarks.Data
                     });
                     //Peaks
                 }
-                //Peaks
                 if (!context.Peaks.Any())
                 {
                     context.Peaks.AddRange(new List<Peak>()
@@ -187,10 +185,130 @@ namespace Mountain_Trips_and_Landmarks.Data
 
                             },
                         });
-                    //Tracks_Landmarks
-                    if (!context.Tracks_Landmarks.Any())
-                    {
-                        context.Tracks_Landmarks.AddRange(new List<Tracks_Landmarks>()
+                }
+
+                //InvalidOperationException: The instance of entity type 'Tracks_Mountains' cannot be tracked because another instance with the same key value for 
+                //        { 'TrackId', 'MountainId'} is already being tracked.When attaching existing entities, ensure that only one entity instance with a given key value 
+                //        is attached.Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+
+                //DELETE THEM OR Track them originaly
+                context.SaveChanges();
+
+                if (!context.Tracks_Mountains.Any())
+                {
+                    context.Tracks_Mountains.AddRange(new List<Tracks_Mountains>()
+                            {
+                                new Tracks_Mountains()
+                                {
+                                    TrackId = 1,
+                                    MountainId = 1
+                                },
+                                 new Tracks_Mountains()
+                                {
+                                    TrackId = 2,
+                                    MountainId = 1
+                                },
+                                  new Tracks_Mountains()
+                                {
+                                    TrackId = 3,
+                                    MountainId = 1
+                                },
+                                   new Tracks_Mountains()
+                                {
+                                    TrackId = 4,
+                                    MountainId = 1
+                                },
+
+                            });
+                }
+                context.SaveChanges();
+                if (!context.Peaks_Mountains.Any())
+                {
+                    context.Peaks_Mountains.AddRange(new List<Peaks_Mountains>()
+                            {
+                                new Peaks_Mountains()
+                                {
+                                    PeakId = 1,
+                                    MountainId = 2
+                                },
+                                 new Peaks_Mountains()
+                                {
+                                    PeakId = 2,
+                                    MountainId = 2
+                                },
+                                  new Peaks_Mountains()
+                                {
+                                    PeakId = 3,
+                                    MountainId = 2
+                                },
+                                   new Peaks_Mountains()
+                                {
+                                    PeakId = 4,
+                                    MountainId = 2
+                                },
+
+                            });
+                }
+                context.SaveChanges();
+                if (!context.Tracks_Peaks.Any())
+                {
+                    context.Tracks_Peaks.AddRange(new List<Tracks_Peaks>()
+                            {
+                                new Tracks_Peaks()
+                                {
+                                    TrackId = 1,
+                                    PeakId = 3
+                                },
+                                 new Tracks_Peaks()
+                                {
+                                    TrackId = 2,
+                                    PeakId = 3
+                                },
+                                  new Tracks_Peaks()
+                                {
+                                    TrackId = 3,
+                                    PeakId = 3
+                                },
+                                   new Tracks_Peaks()
+                                {
+                                    TrackId = 4,
+                                    PeakId = 3
+                                },
+
+                            });
+                }
+                context.SaveChanges();
+                if (!context.Tracks_Mountains.Any())
+                {
+                    context.Tracks_Mountains.AddRange(new List<Tracks_Mountains>()
+                            {
+                                new Tracks_Mountains()
+                                {
+                                    TrackId = 1,
+                                    MountainId = 1
+                                },
+                                 new Tracks_Mountains()
+                                {
+                                    TrackId = 2,
+                                    MountainId = 1
+                                },
+                                  new Tracks_Mountains()
+                                {
+                                    TrackId = 3,
+                                    MountainId = 1
+                                },
+                                   new Tracks_Mountains()
+                                {
+                                    TrackId =  4,
+                                    MountainId = 1
+                                },
+
+                            }); ;
+                }
+                context.SaveChanges();
+                if (!context.Tracks_Landmarks.Any())
+                {
+                    context.Tracks_Landmarks.AddRange(new List<Tracks_Landmarks>()
                             {
                                 new Tracks_Landmarks()
                                 {
@@ -214,99 +332,13 @@ namespace Mountain_Trips_and_Landmarks.Data
                                 },
 
                             });
-                        // Tracks_Mountains
-                        if (!context.Tracks_Mountains.Any())
-                        {
-                            context.Tracks_Mountains.AddRange(new List<Tracks_Mountains>()
-                            {
-                                new Tracks_Mountains()
-                                {
-                                    TrackId = 1,
-                                    MountainId = 3
-                                },
-                                 new Tracks_Mountains()
-                                {
-                                    TrackId = 2,
-                                    MountainId = 4
-                                },
-                                  new Tracks_Mountains()
-                                {
-                                    TrackId = 1,
-                                    MountainId = 2
-                                },
-                                   new Tracks_Mountains()
-                                {
-                                    TrackId = 3,
-                                    MountainId = 1
-                                },
-
-                            });
-
-                            //Tracks_Peaks
-                            if (!context.Tracks_Peaks.Any())
-                            {
-                                context.Tracks_Peaks.AddRange(new List<Tracks_Peaks>()
-                            {
-                                new Tracks_Peaks()
-                                {
-                                    TrackId = 1,
-                                    PeakId = 1
-                                },
-                                 new Tracks_Peaks()
-                                {
-                                    TrackId = 2,
-                                    PeakId = 4
-                                },
-                                  new Tracks_Peaks()
-                                {
-                                    TrackId = 1,
-                                    PeakId = 3
-                                },
-                                   new Tracks_Peaks()
-                                {
-                                    TrackId = 3,
-                                    PeakId = 2
-                                },
-
-                            });
-                            }
-                            //Peak_Mountain
-                            if (!context.Peaks_Mountains.Any())
-                            {
-                                context.Peaks_Mountains.AddRange(new List<Peaks_Mountains>()
-                            {
-                                new Peaks_Mountains()
-                                {
-                                    PeakId = 1,
-                                    MountainId = 1
-                                },
-                                 new Peaks_Mountains()
-                                {
-                                    PeakId = 2,
-                                    MountainId = 2
-                                },
-                                  new Peaks_Mountains()
-                                {
-                                    PeakId = 3,
-                                    MountainId = 3
-                                },
-                                   new Peaks_Mountains()
-                                {
-                                    PeakId = 4,
-                                    MountainId = 4
-                                },
-
-                            });
-                            }
-                            //Landmarks_Mountains
-
-                            context.SaveChanges();
-                        }
-                    }
                 }
+
+                context.SaveChanges();
             }
         }
     }
 }
+
 
 

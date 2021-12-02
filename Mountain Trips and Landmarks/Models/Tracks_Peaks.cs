@@ -8,12 +8,12 @@ namespace Mountain_Trips_and_Landmarks.Models
 {
     public class Tracks_Peaks
     {
-        
-        public int TrackId { get; set; }
+        //int id
+        public int? TrackId { get; set; }
 
         public Track Track { get; set; }
 
-        public int PeakId { get; set; }
+        public int? PeakId { get; set; }
 
         public Peak Peak { get; set; }
     }

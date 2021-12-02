@@ -20,7 +20,7 @@ namespace Mountain_Trips_and_Landmarks.Models
         public string Description { get; set; }
 
         //Mountain
-        public int MountainId { get; set; }
+        public int? MountainId { get; set; }
 
         public Mountain Mountain { get; set; }
 

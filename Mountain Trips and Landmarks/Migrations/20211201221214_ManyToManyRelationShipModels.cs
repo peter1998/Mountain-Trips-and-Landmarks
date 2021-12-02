@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mountain_Trips_and_Landmarks.Migrations
 {
-    public partial class initialSetUp : Migration
+    public partial class ManyToManyRelationShipModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,7 +33,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MountainId = table.Column<int>(type: "int", nullable: false)
+                    MountainId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,7 +43,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                         column: x => x.MountainId,
                         principalTable: "Mountains",
                         principalColumn: "MountainId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -73,7 +73,8 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 columns: table => new
                 {
                     LandmarkId = table.Column<int>(type: "int", nullable: false),
-                    MountainId = table.Column<int>(type: "int", nullable: false)
+                    MountainId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -97,7 +98,8 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 columns: table => new
                 {
                     PeakId = table.Column<int>(type: "int", nullable: false),
-                    MountainId = table.Column<int>(type: "int", nullable: false)
+                    MountainId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -128,8 +130,8 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TrackCategory = table.Column<int>(type: "int", nullable: false),
-                    MountainId = table.Column<int>(type: "int", nullable: false),
-                    PeakId = table.Column<int>(type: "int", nullable: false),
+                    MountainId = table.Column<int>(type: "int", nullable: true),
+                    PeakId = table.Column<int>(type: "int", nullable: true),
                     LandmarksId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -146,13 +148,13 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                         column: x => x.MountainId,
                         principalTable: "Mountains",
                         principalColumn: "MountainId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Tracks_Peaks_PeakId",
                         column: x => x.PeakId,
                         principalTable: "Peaks",
                         principalColumn: "PeakId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -160,7 +162,8 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 columns: table => new
                 {
                     TrackId = table.Column<int>(type: "int", nullable: false),
-                    LandmarkId = table.Column<int>(type: "int", nullable: false)
+                    LandmarkId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -184,7 +187,8 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 columns: table => new
                 {
                     TrackId = table.Column<int>(type: "int", nullable: false),
-                    MountainId = table.Column<int>(type: "int", nullable: false)
+                    MountainId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -217,14 +221,13 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                         name: "FK_Tracks_Peaks_Peaks_PeakId",
                         column: x => x.PeakId,
                         principalTable: "Peaks",
-                        principalColumn: "PeakId",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "PeakId");
                     table.ForeignKey(
                         name: "FK_Tracks_Peaks_Tracks_TrackId",
                         column: x => x.TrackId,
                         principalTable: "Tracks",
                         principalColumn: "TrackId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
