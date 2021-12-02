@@ -6,10 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Image\peak\Kamenitsa.jpg\**" />
-    <Content Remove="Data\Image\peak\Kamenitsa.jpg\**" />
-    <EmbeddedResource Remove="Data\Image\peak\Kamenitsa.jpg\**" />
-    <None Remove="Data\Image\peak\Kamenitsa.jpg\**" />
+    <Compile Remove="Data\Image\**" />
+    <Content Remove="Data\Image\**" />
+    <EmbeddedResource Remove="Data\Image\**" />
+    <None Remove="Data\Image\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,10 +19,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Image\landmark\" />
   </ItemGroup>
 
 </Project>

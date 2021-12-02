@@ -11,12 +11,16 @@ namespace Mountain_Trips_and_Landmarks.Models
         [Key]
         public int? MountainId { get; set; }
 
+        [Display(Name ="Mountain Picture")]
         public string MountainPictureURL { get; set; }
 
+        [Display(Name = "Mountain Name")]
         public string Name { get; set; }
 
+        [Display(Name = "Trecking Time")]
         public int TrekkingTime { get; set; }
 
+        [Display(Name = "Mountains Information and Facts")]
         public string Description { get; set; }
 
         //Relationships

@@ -10,10 +10,14 @@ namespace Mountain_Trips_and_Landmarks.Models
     {
         [Key]
         public int PeakId { get; set; }
+
+        [Display(Name = "View")]
         public string Logo { get; set; }
 
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
+        [Display(Name = "Description")]
         public string Description { get; set; }
 
         //Relationships

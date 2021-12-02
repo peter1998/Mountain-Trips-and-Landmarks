@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Track>
+
+@{
+    ViewData["Title"] = "List of Tracks";
+}
+
+<div class="row" ">
+    <div class="col-md-8 offset-md-2">
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th>@Html.DisplayNameFor(model => model.StartingPoint)</th>
+                    <th>@Html.DisplayNameFor(model => model.EndPoint)</th>
+                    <th>@Html.DisplayNameFor(model => model.Highlights)</th>
+                    <th>@Html.DisplayNameFor(model => model.StartDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.EndDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.TrackCategory)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.StartingPoint)
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.EndPoint)
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.Highlights)
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.TrackCategory)
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

@@ -10,13 +10,17 @@ namespace Mountain_Trips_and_Landmarks.Models
     {
         [Key]
         public int LandmarksId { get; set; }
-
+        
+        [Display(Name="Landmark Picture")]
         public string LandmarkPictureURL { get; set; }
 
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
+        [Display(Name = "Country")]
         public string Country { get; set; }
 
+        [Display(Name = "Description")]
         public string Description { get; set; }
 
         //Mountain

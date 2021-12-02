@@ -12,13 +12,19 @@ namespace Mountain_Trips_and_Landmarks.Models
         [Key]
         public int TrackId { get; set; }
 
+        [Display(Name = "Starting from")]
         public string StartingPoint { get; set; }
 
+        [Display(Name = "End Destination")]
         public string EndPoint { get; set; }
 
+        [Display(Name = "Teams Organizations")]
         public string Highlights { get; set; }
 
+        [Display(Name = "Start of Track")]
         public DateTime StartDate { get; set; }
+
+        [Display(Name = "End of Track")]
         public DateTime EndDate { get; set; }
         public TrackCategory TrackCategory { get; set; }
 

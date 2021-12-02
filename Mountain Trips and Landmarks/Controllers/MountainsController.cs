@@ -19,7 +19,7 @@ namespace Mountain_Trips_and_Landmarks.Controllers
         public async Task<IActionResult> Index()
         {
             var allMountains = await _context.Mountains.ToListAsync();
-            return View();
+            return View(allMountains);
         }
     }
 }
