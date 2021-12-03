@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mountain_Trips_and_Landmarks.Migrations
 {
-    public partial class Initial : Migration
+    public partial class MountainGeterAddedToTracks : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -130,6 +130,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TrackCategory = table.Column<int>(type: "int", nullable: false),
+                    TrackCateogryURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MountainId = table.Column<int>(type: "int", nullable: true),
                     PeakId = table.Column<int>(type: "int", nullable: true),
                     LandmarksId = table.Column<int>(type: "int", nullable: true)

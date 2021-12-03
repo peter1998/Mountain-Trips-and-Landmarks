@@ -16,47 +16,12 @@ namespace Mountain_Trips_and_Landmarks.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Test Round1
-
-            //modelBuilder.Entity<Peaks_Mountains>()
-            //    .HasOne(m => m.Mountain)
-            //    .WithMany(p=>p.Peaks_Mountains)
-            //    .HasForeignKey(m => m.MountainId)
-            //    .OnDelete(DeleteBehavior.NoAction);
-
-            //modelBuilder.Entity<Tracks_Mountains>()
-            //   .HasOne(m => m.Mountain)
-            //   .WithMany(p => p.Tracks_Mountains)
-            //   .HasForeignKey(m => m.MountainId)
-            //   .OnDelete(DeleteBehavior.NoAction);
-
-            //modelBuilder.Entity<Tracks_Peaks>()
-            //   .HasOne(m => m.Track)
-            //   .WithMany(p => p.Tracks_Peaks)
-            //   .HasForeignKey(m => m.TrackId)
-            //   .OnDelete(DeleteBehavior.NoAction);
-
-            //modelBuilder.Entity<Tracks_Landmarks>()
-            //   .HasOne(m => m.Track)
-            //   .WithMany(p => p.Tracks_Landmarks)
-            //   .HasForeignKey(m => m.TrackId)
-            //   .OnDelete(DeleteBehavior.NoAction);
-
-            //modelBuilder.Entity<Landmarks_Mountains>()
-            //   .HasOne(m => m.Landmark)
-            //   .WithMany(p => p.Landmarks_Mountains)
-            //   .HasForeignKey(m => m.LandmarkId)
-            //   .OnDelete(DeleteBehavior.NoAction);
-
-            //Test Round2
-
             modelBuilder.Entity<Tracks_Peaks>().HasKey(am => new
             {
                 am.TrackId,
                 am.PeakId
             });
 
-            //modelBuilder.Entity<Tracks_Peaks>().HasOne(m => m.Track).WithMany(am => am.Tracks_Peaks).HasForeignKey(m => m.TrackId).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Tracks_Peaks>().HasOne(m => m.Peak).WithMany(am => am.Tracks_Peaks).HasForeignKey(m => m.PeakId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Peaks_Mountains>().HasKey(am => new

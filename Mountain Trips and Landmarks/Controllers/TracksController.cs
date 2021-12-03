@@ -18,8 +18,8 @@ namespace Mountain_Trips_and_Landmarks.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var allTrackss = await _context.Tracks.ToListAsync();
-            return View(allTrackss);
+            var allTracks = await _context.Tracks.Include(s=>s.Mountain).ToListAsync();
+            return View(allTracks);
         }
     }
 }

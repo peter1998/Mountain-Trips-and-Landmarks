@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,7 +10,8 @@ namespace Mountain_Trips_and_Landmarks.Models
     public class Mountain
     {
         [Key]
-        public int? MountainId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int MountainId { get; set; }
 
         [Display(Name ="Mountain Picture")]
         public string MountainPictureURL { get; set; }
@@ -31,7 +33,7 @@ namespace Mountain_Trips_and_Landmarks.Models
         public List<Tracks_Mountains> Tracks_Mountains { get; set; }
 
         //Track 
-        public List<Track> Tracks { get; set; }
+       // public List<Track> Tracks { get; set; }
 
         //Landmark 
         public List<Landmark> Landmarks { get; set; }

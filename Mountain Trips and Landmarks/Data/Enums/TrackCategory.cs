@@ -12,9 +12,10 @@ namespace Mountain_Trips_and_Landmarks.Data
         IceClimbing = 3,
         RockCraft = 4,
         Marathon = 5,
-        FreerideCycle =6,
+        Hiking =6,
         Downhill = 7,
         Enduro = 8,
         Ski = 9,
+        HorseRiding=10
     }
 }

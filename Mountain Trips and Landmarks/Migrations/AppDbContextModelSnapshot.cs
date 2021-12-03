@@ -68,7 +68,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Mountain", b =>
                 {
-                    b.Property<int?>("MountainId")
+                    b.Property<int>("MountainId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -163,10 +163,14 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("StartingPoint")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TrackCategory")
                         .HasColumnType("int");
+
+                    b.Property<string>("TrackCateogryURL")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TrackId");
 
@@ -291,7 +295,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                         .HasForeignKey("LandmarksId");
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Mountain", "Mountain")
-                        .WithMany("Tracks")
+                        .WithMany()
                         .HasForeignKey("MountainId");
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Peak", "Peak")
@@ -378,8 +382,6 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Navigation("Peaks");
 
                     b.Navigation("Peaks_Mountains");
-
-                    b.Navigation("Tracks");
 
                     b.Navigation("Tracks_Mountains");
                 });

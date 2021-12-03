@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace Mountain_Trips_and_Landmarks.Models
     {
         [Key]
         public int TrackId { get; set; }
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "Starting from")]
         public string StartingPoint { get; set; }
 
@@ -28,6 +29,8 @@ namespace Mountain_Trips_and_Landmarks.Models
         public DateTime EndDate { get; set; }
         public TrackCategory TrackCategory { get; set; }
 
+        public string TrackCateogryURL { get; set; }
+
         //Relationships
 
         public List<Tracks_Peaks> Tracks_Peaks { get; set; }
@@ -42,7 +45,7 @@ namespace Mountain_Trips_and_Landmarks.Models
 
         public Mountain Mountain { get; set; }
 
-       
+
         public int? PeakId { get; set; }
 
         public Peak Peak { get; set; }

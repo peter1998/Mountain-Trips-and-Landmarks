@@ -5,45 +5,63 @@
 }
 
 <div class="row" ">
-    <div class="col-md-8 offset-md-2">
-        <table class="table">
-            <thead>
-                <tr class="text-center">
-                    <th>@Html.DisplayNameFor(model => model.StartingPoint)</th>
-                    <th>@Html.DisplayNameFor(model => model.EndPoint)</th>
-                    <th>@Html.DisplayNameFor(model => model.Highlights)</th>
-                    <th>@Html.DisplayNameFor(model => model.StartDate)</th>
-                    <th>@Html.DisplayNameFor(model => model.EndDate)</th>
-                    <th>@Html.DisplayNameFor(model => model.TrackCategory)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                <tr>
-                    <td class="align-middle">
-                        @Html.DisplayFor(modelItem => item.StartingPoint)
-                    </td>
-                    <td class="align-middle">
-                        @Html.DisplayFor(modelItem => item.EndPoint)
-                    </td>
-                    <td class="align-middle">
-                        @Html.DisplayFor(modelItem => item.Highlights)
-                    </td>
-                    <td class="align-middle">
-                        @Html.DisplayFor(modelItem => item.StartDate)
-                    </td>
-                    <td class="align-middle">
-                        @Html.DisplayFor(modelItem => item.EndDate)
-                    </td>
-                    <td class="align-middle">
-                        @Html.DisplayFor(modelItem => item.TrackCategory)
-                    </td>
-
-                </tr>
-                }
-            </tbody>
-
-        </table>
-    </div>
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 555px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.StartingPoint -> @item.EndPoint
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="md-6">
+                       
+                        <img src="@item.TrackCateogryURL" width="100%" alt="@item.TrackCategory" /> 
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text"><b>Team Organization: </b>@item.Highlights</p>
+                            <p class="card-text"><b>Mountain Name: </b>@item.Mountain.Name</p>
+                            <p class="card-text"><b>Mountain TreckingTime: </b>@item.Mountain.TrekkingTime</p>
+                            <p class="card-text"><b>Mountain View </b><img src="@item.Mountain.MountainPictureURL" width="111%" alt="@item.TrackCategory" /></p>
+                            <p class="card-text"><b>Starting from: </b>@item.StartingPoint</p>
+                            <p class="card-text"><b>End Destination: </b>@item.EndPoint</p>
+                            <p class="card-text"><b>Category: </b>@item.TrackCategory</p>
+                            <p class="card-text"><b>Starting date: </b>@item.StartDate.ToString("dd MM yy")</p>
+                            <p class="card-text"><b>End date: </b>@item.EndDate.ToString("dd MM yy")</p>
+                            <p class="card-text ">
+                                <b>Status: </b>
+                                @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                                {
+                                    <span class="badge bg-success text-white">Available</span>
+                                }
+                                else if (DateTime.Now >= item.StartDate)
+                                {
+                                    <span class="badge bg-warning text-white">Еxpired</span>
+                                }
+                                else if (DateTime.Now <= item.StartDate)
+                                {
+                                    <span class="badge bg-info text-white">Upcoming</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right"><i class="bi bi-eye-fill"></i>Show Detail</a>
+                                <a class="btn btn-success text-white"><i class="bi bi-tree"></i>Add to Adventure List</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
+
