@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,25 +8,43 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Mountain_Trips_and_Landmarks</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <a class="navbar-brand" asp-area="" asp-controller="Tracks" asp-action="Index">Mountain_Trips_and_Landmarks</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+                        <li class="navbar-nav flex-grow-1">
+                            <a class="nav-link text-dark" asp-controller="Tracks" asp-action="Index"> <i class="badge-info bi-compass"></i>Tracks</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-hover="dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
+                                <i class="bi bi-gear"></i> Management
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-controller="Mountains" asp-action="Index"><i class="bi bi-image-alt"></i> Mountains</i></a>
+                                <a class="dropdown-item" asp-controller="Landmarks" asp-action="Index"><i class="bi bi-binoculars-fill"> Landmarks</i></a>
+                                <a class="dropdown-item" asp-controller="Peaks" asp-action="Index"><i class="bi bi-sunrise"> Peaks</i></a>
+                            </div>
                         </li>
                     </ul>
+
+                    <form class="form-inline my-2 my-lg-0" asp-controller="Tracks" asp-action="Filter" style="padding-right: 25px;">
+                        <input name="searchString" type="text" class="form-control" placeholder="Search for a track.." />
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -38,7 +57,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - Mountain_Trips_and_Landmarks - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - Mountain_Trips_and_Landmarks
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
