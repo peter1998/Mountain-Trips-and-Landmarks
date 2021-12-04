@@ -12,8 +12,8 @@
         <table class="table">
             <thead>
                 <tr class="text-center">
-                    <th>@Html.DisplayNameFor(model => model.Name)</th>
                     <th>@Html.DisplayNameFor(model => model.Logo)</th>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
                     <th>@Html.DisplayNameFor(model => model.Description)</th>
                     <th>Actions</th>
                 </tr>
@@ -34,12 +34,9 @@
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td class="align-middle">
-                            @*<a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.PeakId"><i class="bi bi-pencil-square"></i>Edit</a> |
-                            <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.PeakId"><i class="bi bi-eye"></i>Details</a> |
-                            <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.PeakId"><i class="bi bi-trash"></i>Delete</a>*@
-                            <a href="/Peaks/Edit/" class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.PeakId"><i class="bi bi-pencil-square"></i> Edit</a>
-                                <a href="/Peaks/Details/@item.PeakId" class="btn btn-success" asp-action="Details" asp-route-id="@item.PeakId"><i class="bi bi-eye"></i>Details</a>
-                                <a href="/Peaks/Delete" class="btn btn-danger"><i class="bi bi-trash"> </i>Delete</a>
+                            <a href="/Peaks/Edit/@item.PeakId" class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.PeakId"><i class="bi bi-pencil-square"></i> Edit</a>
+                            <a href="/Peaks/Details/@item.PeakId" class="btn btn-success" asp-action="Details" asp-route-id="@item.PeakId"><i class="bi bi-eye"></i> Details</a>
+                            <a href="/Peaks/Delete/@item.PeakId" class="btn btn-danger" asp-action="Details" asp-route-id="@item.PeakId"><i class="bi bi-trash"> </i> Delete</a>
                         </td>
                     </tr>
                 }
@@ -48,11 +45,7 @@
         </table>
     </div>
 </div>
-@*<div style="position: fixed; right: 15px" class="text-white">
-        <a asp-controller="Peaks" asp-action="Create" class="btn btn-success"> <i class="bi bi-plus-circle"></i> Add New Peak </a>
 
-    </div>*@
-@*<%= Html.ActionLink("some text", "actionName", "controllerName") %>*@
 <div style="position: fixed; right: 350px;" class="text-white">
     <a href="/Peaks/Create" class="Button"><i class="bi bi-plus-circle"></i> Add New Peak</a>
 </div>

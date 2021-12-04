@@ -46,8 +46,55 @@ namespace Mountain_Trips_and_Landmarks.Controllers
         {
             var peakDetails = await _service.GetByIdAsync(id);
 
-            if (peakDetails == null) return View("Empty");
+            if (peakDetails == null) return View("NotFound");
             return View(peakDetails);
         }
+
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var peakDetails = await _service.GetByIdAsync(id);
+
+            if (peakDetails == null) return View("NotFound");
+            return View(peakDetails);
+        }
+
+        [HttpPost, ActionName("Edit")]
+        public async Task<IActionResult> Edit(int id, [Bind("Logo,Name,Description")] Peak peak)
+        {
+            var peakDetails = await _service.GetByIdAsync(id);
+
+            if (!ModelState.IsValid)
+            {
+                return View(peak);
+            }
+
+            await _service.UpdateAsync(id, peak);
+            return RedirectToAction(nameof(Index));
+        }
+
+        //Get: Peaks/Delete/1
+        public async Task<IActionResult> Delete(int id)
+        {
+            var peakDetails = await _service.GetByIdAsync(id);
+
+            if (peakDetails == null) return View("NotFound");
+            return View(peakDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var peakDetails = await _service.GetByIdAsync(id);
+
+            if (peakDetails == null) return View("NotFound");
+
+            await _service.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+
     }
 }

@@ -22,9 +22,11 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Peaks.FirstOrDefaultAsync(n => n.PeakId == id);
+            _context.Peaks.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Peak>> GetAllAsync()
@@ -39,9 +41,16 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
             return result;
         }
 
-        public Peak Update(int id, Peak peak)
+        public async Task<Peak> UpdateAsync(int id, Peak newPeak)
         {
-            throw new NotImplementedException();
+            // moe podobrenie
+            newPeak.PeakId = id;
+            // moe podobrenie
+            var peakForDelete = _context.Peaks.ToList().FirstOrDefault(n => n.PeakId == id);
+            _context.Remove(peakForDelete);
+            _context.Update(newPeak);
+            await _context.SaveChangesAsync();
+            return newPeak;
         }
     }
 }

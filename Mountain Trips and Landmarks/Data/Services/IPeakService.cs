@@ -12,8 +12,8 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
         Task<Peak> GetByIdAsync(int id);
 
         Task AddAsync(Peak peak);
-        Peak Update(int id, Peak peak);
+        Task<Peak> UpdateAsync(int id, Peak peak);
 
-        void Delete(int id);
+        Task DeleteAsync(int id);
     }
 }
