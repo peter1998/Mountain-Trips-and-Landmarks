@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mountain_Trips_and_Landmarks.Data;
+using Mountain_Trips_and_Landmarks.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,11 @@ namespace Mountain_Trips_and_Landmarks
         public void ConfigureServices(IServiceCollection services)
         {
             //DbContext configuration
-            services.AddDbContext<AppDbContext>(options=> options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
+            services.AddDbContext<AppDbContext>(options=> options.
+            UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
+
+            //Services configuration
+            services.AddScoped<IPeakService, PeakService>();
 
             services.AddControllersWithViews();
         }
@@ -55,10 +60,11 @@ namespace Mountain_Trips_and_Landmarks
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Tracks}/{action=Index}/{id?}");
             });
 
             //Seed database
+
            AppDbInitializer.Seed(app);
         }
     }

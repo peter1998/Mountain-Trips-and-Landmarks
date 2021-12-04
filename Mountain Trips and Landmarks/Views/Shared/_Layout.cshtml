@@ -25,13 +25,15 @@
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="navbar-nav flex-grow-1">
-                            <a class="nav-link text-dark" asp-controller="Tracks" asp-action="Index"> <i class="badge-info bi-compass"></i>Tracks</a>
+                            <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark" asp-controller="Tracks" asp-action="Index"> <i class="badge-info bi-compass"></i>Tracks</a></button>
+                            
                         </li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-hover="dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
                                 <i class="bi bi-gear"></i> Management
                             </a>
+
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" asp-controller="Mountains" asp-action="Index"><i class="bi bi-image-alt"></i> Mountains</i></a>

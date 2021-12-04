@@ -11,13 +11,17 @@ namespace Mountain_Trips_and_Landmarks.Models
         [Key]
         public int PeakId { get; set; }
 
-        [Display(Name = "View")]
+        [Display(Name = "Picture View")]
+        [Required(ErrorMessage ="Peak Picture is required")]
         public string Logo { get; set; }
 
-        [Display(Name = "Name")]
+        [Display(Name = "Peak Name")]
+        [Required(ErrorMessage = "Peak Name is required")]
+        [StringLength(50,MinimumLength =3,ErrorMessage = "Peak Name must be between 3 and 50 chars")]
         public string Name { get; set; }
 
         [Display(Name = "Description")]
+        [Required(ErrorMessage = "Peak story is required")]
         public string Description { get; set; }
 
         //Relationships
