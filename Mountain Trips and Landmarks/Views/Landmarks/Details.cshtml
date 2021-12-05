@@ -1,0 +1,57 @@
+﻿@model Landmark
+
+@{ ViewData["Title"] = "Detals of the landmark"; }
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Details for @Model.Name</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group text-center">
+                    <img class="border-info rounded-circle" style="max-width: 150px" id="LogoPicturePreview" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="LandmarkPictureURL" class="control-label"></label>
+                    <input asp-for="LandmarkPictureURL" class="form-control" readonly />
+                    <span asp-validation-for="LandmarkPictureURL" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" readonly />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Country" class="control-label"></label>
+                    <input asp-for="Country" class="form-control" readonly />
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" readonly />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+
+                    <a class="btn btn-outline-success float-right" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                    <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>$(document).ready(function () {
+            var output = docucument.getElementById('Logo');
+            output.src = $('#LogoPicturePreview').val();
+        })</script>
+
+
+}

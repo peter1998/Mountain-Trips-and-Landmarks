@@ -14,7 +14,7 @@ namespace Mountain_Trips_and_Landmarks.Controllers
     {
         private readonly IPeakService _service;
 
-        public PeaksController(IPeakService service )
+        public PeaksController(IPeakService service)
         {
             _service = service;
         }
@@ -31,9 +31,9 @@ namespace Mountain_Trips_and_Landmarks.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Logo,Name,Description")]Peak peak)
+        public async Task<IActionResult> Create([Bind("Logo,Name,Description")] Peak peak)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(peak);
             }
@@ -69,10 +69,9 @@ namespace Mountain_Trips_and_Landmarks.Controllers
                 return View(peak);
             }
 
- 
             await _service.UpdateAsync(id, peak);
 
-                return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
 
         //Get: Peaks/Delete/1
@@ -93,7 +92,7 @@ namespace Mountain_Trips_and_Landmarks.Controllers
             {
                 return View("NotFound");
             }
-            
+
 
             await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
