@@ -69,8 +69,10 @@ namespace Mountain_Trips_and_Landmarks.Controllers
                 return View(peak);
             }
 
+ 
             await _service.UpdateAsync(id, peak);
-            return RedirectToAction(nameof(Index));
+
+                return RedirectToAction(nameof(Index));
         }
 
         //Get: Peaks/Delete/1
@@ -87,7 +89,11 @@ namespace Mountain_Trips_and_Landmarks.Controllers
         {
             var peakDetails = await _service.GetByIdAsync(id);
 
-            if (peakDetails == null) return View("NotFound");
+            if (peakDetails == null)
+            {
+                return View("NotFound");
+            }
+            
 
             await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));

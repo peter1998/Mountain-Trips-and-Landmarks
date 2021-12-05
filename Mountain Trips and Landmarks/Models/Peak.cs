@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mountain_Trips_and_Landmarks.Data.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Mountain_Trips_and_Landmarks.Models
 {
-    public class Peak
+    public class Peak: IEntityBase
     {
         [Key]
-        public int PeakId { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "Picture View")]
         [Required(ErrorMessage ="Peak Picture is required")]
@@ -31,7 +32,8 @@ namespace Mountain_Trips_and_Landmarks.Models
 
         //Track
        public List<Track> Tracks { get; set; }
-      //  public List<Mountain> Mountains { get; set; }
+        //public int PeakId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        //  public List<Mountain> Mountains { get; set; }
 
 
     }
