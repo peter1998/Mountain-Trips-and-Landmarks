@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace Mountain_Trips_and_Landmarks.Data.Services
 {
-    public class PeakService : EntityBaseRepository<Peak>, IPeakService
+    public class PeakService : EntityBaseRepository<Peak>,
+        IPeakService
     {
-        private readonly AppDbContext _context;
+        
 
         public PeakService(AppDbContext context) :base(context)
         {
