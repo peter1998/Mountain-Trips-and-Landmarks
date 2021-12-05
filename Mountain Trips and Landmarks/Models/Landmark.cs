@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mountain_Trips_and_Landmarks.Data.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Mountain_Trips_and_Landmarks.Models
 {
-    public class Landmark
+    public class Landmark:IEntityBase
     {
         [Key]
-        public int LandmarksId { get; set; }
+        public int Id { get; set; }
         
         [Display(Name="Landmark Picture")]
         public string LandmarkPictureURL { get; set; }

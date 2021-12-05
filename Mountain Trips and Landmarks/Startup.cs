@@ -32,7 +32,7 @@ namespace Mountain_Trips_and_Landmarks
 
             //Services configuration
             services.AddScoped<IPeakService, PeakService>();
-
+            services.AddScoped<ILandmarksService, LandmarksService>();
             services.AddControllersWithViews();
         }
 
