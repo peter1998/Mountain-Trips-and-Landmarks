@@ -150,6 +150,7 @@ Rila Mountains and 12 km wide. Its summit Golyam Debelets Peak rises to 1415 m",
                         }
                 });
                 Stack<Mountain> mountainStackInitializer = new Stack<Mountain>(mountainList);
+                Stack<Mountain> mountainListStackInitializer = new Stack<Mountain>(mountainList);
 
                 if (!context.Landmarks.Any())
                 {
@@ -241,125 +242,9 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             },
                         });
                 }
-                
                     //Rila - Pirin - Rhodopes - Stara Planina - Verila
 
                     context.SaveChanges();
-
-                    //if (!context.Tracks.Any())
-                    //{
-                    
-                    //context.Tracks.AddRange(new List<Track>()
-                    //{
-                    //    new Track()
-                    //    {
-                    //        StartingPoint = "Samokov",
-                    //        EndPoint = "Ski Zone Borovets",
-                    //        Highlights = "Fast Life Organization",
-                    //        StartDate = DateTime.ParseExact("11/11/2021","dd/MM/yyyy", null),
-                    //        EndDate = DateTime.ParseExact("02/02/2022","dd/MM/yyyy", null),
-                    //        TrackCategory = TrackCategory.Ski,
-                    //        TrackCateogryURL = "https://media.istockphoto.com/photos/group-skiing-picture-id1270325495",
-                    //        Mountain  = mountainStackInitializer.Pop()
-
-                    //    },
-                    //    new Track()
-                    //    {
-                    //        StartingPoint = "Banderishka polyana",
-                    //        EndPoint = "Bansko",
-                    //        Highlights = "Bulgaria Ski Hodilay",
-                    //        StartDate = DateTime.ParseExact("11/11/2021","dd/MM/yyyy", null),
-                    //        EndDate = DateTime.ParseExact("12/02/2022","dd/MM/yyyy", null),
-                    //        TrackCategory = TrackCategory.Ski,
-                    //        TrackCateogryURL = "https://media.istockphoto.com/photos/group-skiing-picture-id1270325495",
-                    //        Mountain  = mountainStackInitializer.Pop()
-                    //        //Landmark = landmarkStackInitializer.Pop()
-                    //        //Peak = landmarkStackInitializer.Pop()
-                    //    },
-                    //    new Track()
-                    //    {
-                    //        StartingPoint = "Malyovishki Lakes",
-                    //        EndPoint = "Monastery of Saint Ivan of Rila",
-                    //        Highlights = "Green Mountain Highlights",
-                    //        StartDate = DateTime.ParseExact("01/04/2022","dd/MM/yyyy", null),
-                    //        EndDate = DateTime.ParseExact("01/09/2022","dd/MM/yyyy", null),
-                    //        TrackCategory = TrackCategory.Expedition,
-                    //        TrackCateogryURL = "https://media.istockphoto.com/photos/family-hiking-on-summer-vacation-in-colorado-mountains-picture-id1151466121",
-                    //        Mountain  = mountainStackInitializer.Pop()
-                    //        //Landmark = landmarkStackInitializer.Pop()
-                    //        //Peak = landmarkStackInitializer.Pop()
-                    //    },
-                    //    new Track()
-                    //    {
-                    //        StartingPoint = "Trojan Pass",
-                    //        EndPoint = "Botev Peak",
-                    //        Highlights = "Family DH track",
-                    //        StartDate = DateTime.ParseExact("21/04/2021","dd/MM/yyyy", null),
-                    //        EndDate = DateTime.ParseExact("04/06/2022","dd/MM/yyyy", null),
-                    //        TrackCategory = TrackCategory.Downhill,
-                    //        TrackCateogryURL = "https://media.istockphoto.com/photos/professional-bike-rider-jumping-during-downhill-ride-on-his-bicycle-picture-id1301763194",
-                    //        Mountain  = mountainStackInitializer.Pop()
-                    //        //Landmark = landmarkStackInitializer.Pop()
-                    //        //Peak = landmarkStackInitializer.Pop()
-                    //    },
-                    //    new Track()
-                    //    {
-                    //        StartingPoint = "Panichishte village",
-                    //        EndPoint = "Skakavitsa waterfall",
-                    //        Highlights = "EarthTravellers",
-                    //        StartDate = DateTime.ParseExact("27/04/2016","dd/MM/yyyy", null),
-                    //        EndDate = DateTime.ParseExact("08/04/2016","dd/MM/yyyy", null),
-                    //        TrackCategory = TrackCategory.Hiking,
-                    //        TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
-                    //        Mountain  = mountainStackInitializer.Pop()
-                    //        //Landmark = landmarkStackInitializer.Pop()
-                    //        //Peak = landmarkStackInitializer.Pop()
-                    //    },
-                    //    new Track()
-                    //    {
-                    //        StartingPoint = "Golden Bridges",
-                    //        EndPoint = "Cherni vruh",
-                    //        Highlights = "EarthTravellers",
-                    //        StartDate = DateTime.ParseExact("27/04/2016","dd/MM/yyyy", null),
-                    //        EndDate = DateTime.ParseExact("08/04/2016","dd/MM/yyyy", null),
-                    //        TrackCategory = TrackCategory.Hiking,
-                    //        TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
-                    //        Mountain  = mountainStackInitializer.Pop()
-                    //        //Landmark = landmarkStackInitializer.Pop()
-                    //        //Peak = landmarkStackInitializer.Pop()
-                    //    },
-                    //}) ; 
-                    //}
-
-                context.SaveChanges();
-
-                if (!context.Tracks_Mountains.Any())
-                {
-                    context.Tracks_Mountains.AddRange(new List<Tracks_Mountains>()
-                            {
-                                new Tracks_Mountains()
-                                {
-                                    TrackId = 1,
-                                    MountainId = 4
-                                },
-                                 new Tracks_Mountains()
-                                {
-                                    TrackId = 2,
-                                    MountainId = 3
-                                },
-                                  new Tracks_Mountains()
-                                {
-                                    TrackId = 3,
-                                    MountainId = 2
-                                },
-                                   new Tracks_Mountains()
-                                {
-                                    TrackId = 4,
-                                    MountainId = 1
-                                },
-
-                            });
-                }
 
                 trackList.AddRange(new List<Track>()
                     {
@@ -375,18 +260,6 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             Mountain  = mountainStackInitializer.Pop()
 
                         },
-
-                        new Track()
-                        {
-                            StartingPoint = "Malyovishki Lakes",
-                            EndPoint = "Monastery of Saint Ivan of Rila",
-                            Highlights = "Green Mountain Highlights",
-                            StartDate = DateTime.ParseExact("01/04/2022","dd/MM/yyyy", null),
-                            EndDate = DateTime.ParseExact("01/09/2022","dd/MM/yyyy", null),
-                            TrackCategory = TrackCategory.Expedition,
-                            TrackCateogryURL = "https://media.istockphoto.com/photos/family-hiking-on-summer-vacation-in-colorado-mountains-picture-id1151466121",
-                            Mountain  = mountainStackInitializer.Pop()
-                        },
                         new Track()
                         {
                             StartingPoint = "Banderishka polyana",
@@ -397,30 +270,180 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             TrackCategory = TrackCategory.Ski,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/group-skiing-picture-id1270325495",
                             Mountain  = mountainStackInitializer.Pop()
+                            //Landmark = landmarkStackInitializer.Pop()
+                            //Peak = landmarkStackInitializer.Pop()
                         },
                         new Track()
                         {
-                            StartingPoint = "Little wall",
-                            EndPoint = "Pamporovo",
+                            StartingPoint = "Malyovishki Lakes",
+                            EndPoint = "Monastery of Saint Ivan of Rila",
+                            Highlights = "Green Mountain Highlights",
+                            StartDate = DateTime.ParseExact("01/04/2022","dd/MM/yyyy", null),
+                            EndDate = DateTime.ParseExact("01/09/2022","dd/MM/yyyy", null),
+                            TrackCategory = TrackCategory.Expedition,
+                            TrackCateogryURL = "https://media.istockphoto.com/photos/family-hiking-on-summer-vacation-in-colorado-mountains-picture-id1151466121",
+                            Mountain  = mountainStackInitializer.Pop()
+                            //Landmark = landmarkStackInitializer.Pop()
+                            //Peak = landmarkStackInitializer.Pop()
+                        },
+                        new Track()
+                        {
+                            StartingPoint = "Trojan Pass",
+                            EndPoint = "Botev Peak",
                             Highlights = "Family DH track",
                             StartDate = DateTime.ParseExact("21/04/2021","dd/MM/yyyy", null),
                             EndDate = DateTime.ParseExact("04/06/2022","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Downhill,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/professional-bike-rider-jumping-during-downhill-ride-on-his-bicycle-picture-id1301763194",
                             Mountain  = mountainStackInitializer.Pop()
+                            //Landmark = landmarkStackInitializer.Pop()
+                            //Peak = landmarkStackInitializer.Pop()
                         },
                         new Track()
                         {
-                            StartingPoint = "Bezbog hut",
-                            EndPoint = "Demianitsa hut",
-                            Highlights = "Summer Bansko",
+                            StartingPoint = "Panichishte village",
+                            EndPoint = "Skakavitsa waterfall",
+                            Highlights = "EarthTravellers",
                             StartDate = DateTime.ParseExact("27/04/2016","dd/MM/yyyy", null),
                             EndDate = DateTime.ParseExact("08/04/2016","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Hiking,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
                             Mountain  = mountainStackInitializer.Pop()
+                            //Landmark = landmarkStackInitializer.Pop()
+                            //Peak = landmarkStackInitializer.Pop()
+                        },
+                        new Track()
+                        {
+                            StartingPoint = "Golden Bridges",
+                            EndPoint = "Cherni vruh",
+                            Highlights = "EarthTravellers",
+                            StartDate = DateTime.ParseExact("27/04/2016","dd/MM/yyyy", null),
+                            EndDate = DateTime.ParseExact("08/04/2016","dd/MM/yyyy", null),
+                            TrackCategory = TrackCategory.Hiking,
+                            TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
+                            Mountain  = mountainStackInitializer.Pop()
+                            //Landmark = landmarkStackInitializer.Pop()
+                            //Peak = landmarkStackInitializer.Pop()
                         },
                     });
+
+                if (!context.Tracks.Any())
+                {
+
+                    context.Tracks.AddRange(new List<Track>()
+                    {
+                        new Track()
+                        {
+                            StartingPoint = "Samokov",
+                            EndPoint = "Ski Zone Borovets",
+                            Highlights = "Fast Life Organization",
+                            StartDate = DateTime.ParseExact("11/11/2021","dd/MM/yyyy", null),
+                            EndDate = DateTime.ParseExact("02/02/2022","dd/MM/yyyy", null),
+                            TrackCategory = TrackCategory.Ski,
+                            TrackCateogryURL = "https://media.istockphoto.com/photos/group-skiing-picture-id1270325495",
+                            Mountain  = mountainListStackInitializer.Pop()
+
+                        },
+                        new Track()
+                        {
+                            StartingPoint = "Banderishka polyana",
+                            EndPoint = "Bansko",
+                            Highlights = "Bulgaria Ski Hodilay",
+                            StartDate = DateTime.ParseExact("11/11/2021","dd/MM/yyyy", null),
+                            EndDate = DateTime.ParseExact("12/02/2022","dd/MM/yyyy", null),
+                            TrackCategory = TrackCategory.Ski,
+                            TrackCateogryURL = "https://media.istockphoto.com/photos/group-skiing-picture-id1270325495",
+                            Mountain  = mountainListStackInitializer.Pop()
+                            //Landmark = landmarkStackInitializer.Pop()
+                            //Peak = landmarkStackInitializer.Pop()
+                        },
+                        new Track()
+                        {
+                            StartingPoint = "Malyovishki Lakes",
+                            EndPoint = "Monastery of Saint Ivan of Rila",
+                            Highlights = "Green Mountain Highlights",
+                            StartDate = DateTime.ParseExact("01/04/2022","dd/MM/yyyy", null),
+                            EndDate = DateTime.ParseExact("01/09/2022","dd/MM/yyyy", null),
+                            TrackCategory = TrackCategory.Expedition,
+                            TrackCateogryURL = "https://media.istockphoto.com/photos/family-hiking-on-summer-vacation-in-colorado-mountains-picture-id1151466121",
+                            Mountain  = mountainListStackInitializer.Pop()
+                            //Landmark = landmarkStackInitializer.Pop()
+                            //Peak = landmarkStackInitializer.Pop()
+                        },
+                        new Track()
+                        {
+                            StartingPoint = "Trojan Pass",
+                            EndPoint = "Botev Peak",
+                            Highlights = "Family DH track",
+                            StartDate = DateTime.ParseExact("21/04/2021","dd/MM/yyyy", null),
+                            EndDate = DateTime.ParseExact("04/06/2022","dd/MM/yyyy", null),
+                            TrackCategory = TrackCategory.Downhill,
+                            TrackCateogryURL = "https://media.istockphoto.com/photos/professional-bike-rider-jumping-during-downhill-ride-on-his-bicycle-picture-id1301763194",
+                            Mountain  = mountainListStackInitializer.Pop()
+                            //Landmark = landmarkStackInitializer.Pop()
+                            //Peak = landmarkStackInitializer.Pop()
+                        },
+                        new Track()
+                        {
+                            StartingPoint = "Panichishte village",
+                            EndPoint = "Skakavitsa waterfall",
+                            Highlights = "EarthTravellers",
+                            StartDate = DateTime.ParseExact("27/04/2016","dd/MM/yyyy", null),
+                            EndDate = DateTime.ParseExact("08/04/2016","dd/MM/yyyy", null),
+                            TrackCategory = TrackCategory.Hiking,
+                            TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
+                            Mountain  = mountainListStackInitializer.Pop()
+                            //Landmark = landmarkStackInitializer.Pop()
+                            //Peak = landmarkStackInitializer.Pop()
+                        },
+                        new Track()
+                        {
+                            StartingPoint = "Golden Bridges",
+                            EndPoint = "Cherni vruh",
+                            Highlights = "EarthTravellers",
+                            StartDate = DateTime.ParseExact("27/04/2016","dd/MM/yyyy", null),
+                            EndDate = DateTime.ParseExact("08/04/2016","dd/MM/yyyy", null),
+                            TrackCategory = TrackCategory.Hiking,
+                            TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
+                            Mountain  = mountainListStackInitializer.Pop()
+                            //Landmark = landmarkStackInitializer.Pop()
+                            //Peak = landmarkStackInitializer.Pop()
+                        },
+                    });
+                }
+
+
+                
+
+                context.SaveChanges();
+
+                if (!context.Tracks_Mountains.Any())
+                {
+                    context.Tracks_Mountains.AddRange(new List<Tracks_Mountains>()
+                            {
+                                new Tracks_Mountains()
+                                {
+                                    TrackId = 1,
+                                    MountainId = 1
+                                },
+                                 new Tracks_Mountains()
+                                {
+                                    TrackId = 2,
+                                    MountainId = 2
+                                },
+                                  new Tracks_Mountains()
+                                {
+                                    TrackId = 3,
+                                    MountainId = 3
+                                },
+                                   new Tracks_Mountains()
+                                {
+                                    TrackId = 4,
+                                    MountainId = 4
+                                },
+
+                            });
+                }
 
                 context.SaveChanges();
 

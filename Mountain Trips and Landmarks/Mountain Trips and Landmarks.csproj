@@ -7,9 +7,13 @@
 
   <ItemGroup>
     <Compile Remove="Data\Image\**" />
+    <Compile Remove="NewFolder\**" />
     <Content Remove="Data\Image\**" />
+    <Content Remove="NewFolder\**" />
     <EmbeddedResource Remove="Data\Image\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
     <None Remove="Data\Image\**" />
+    <None Remove="NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
