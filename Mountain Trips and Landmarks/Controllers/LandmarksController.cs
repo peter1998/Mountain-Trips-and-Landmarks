@@ -88,5 +88,28 @@ namespace Mountain_Trips_and_Landmarks.Controllers
             }
             return View(landmark);
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var landmarkDetails = await _service.GetByIdAsync(id);
+
+            if (landmarkDetails == null) return View("NotFound");
+            return View(landmarkDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var landmarkDetails = await _service.GetByIdAsync(id);
+
+            if (landmarkDetails == null)
+            {
+                return View("NotFound");
+            }
+
+
+            await _service.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

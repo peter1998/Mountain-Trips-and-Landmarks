@@ -10,8 +10,8 @@ using Mountain_Trips_and_Landmarks.Data;
 namespace Mountain_Trips_and_Landmarks.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211205140819_CreatedEntityBaseRepository")]
-    partial class CreatedEntityBaseRepository
+    [Migration("20211208133812_AddingCRUDforMountains")]
+    partial class AddingCRUDforMountains
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,27 +23,32 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Landmark", b =>
                 {
-                    b.Property<int>("LandmarksId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
                     b.Property<string>("Country")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LandmarkPictureURL")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MountainId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("LandmarksId");
+                    b.HasKey("Id");
 
                     b.HasIndex("MountainId");
 
@@ -70,7 +75,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Mountain", b =>
                 {
-                    b.Property<int>("MountainId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -87,7 +92,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Property<int>("TrekkingTime")
                         .HasColumnType("int");
 
-                    b.HasKey("MountainId");
+                    b.HasKey("Id");
 
                     b.ToTable("Mountains");
                 });
@@ -156,7 +161,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Property<string>("Highlights")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("LandmarksId")
+                    b.Property<int?>("LandmarkId")
                         .HasColumnType("int");
 
                     b.Property<int?>("MountainId")
@@ -180,7 +185,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
                     b.HasKey("TrackId");
 
-                    b.HasIndex("LandmarksId");
+                    b.HasIndex("LandmarkId");
 
                     b.HasIndex("MountainId");
 
@@ -298,7 +303,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 {
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Landmark", null)
                         .WithMany("Tracks")
-                        .HasForeignKey("LandmarksId");
+                        .HasForeignKey("LandmarkId");
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Mountain", "Mountain")
                         .WithMany()
