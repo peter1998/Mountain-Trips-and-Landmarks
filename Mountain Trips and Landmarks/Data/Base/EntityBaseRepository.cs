@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Mountain_Trips_and_Landmarks.Data.Base
@@ -30,7 +31,15 @@ namespace Mountain_Trips_and_Landmarks.Data.Base
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()=> await _context.Set<T>().ToListAsync();
-            
+
+        public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> querry = _context.Set<T>();
+            querry = includeProperties.Aggregate(querry, (current, includeProperties) => current.Include(includeProperties));
+            return await querry.ToListAsync();
+
+        }
+
         public async Task<T> GetByIdAsync(int id)=>  await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
             
         public async Task UpdateAsync(int id, T entity)

@@ -34,6 +34,7 @@ namespace Mountain_Trips_and_Landmarks
             services.AddScoped<IPeakService, PeakService>();
             services.AddScoped<ILandmarksService, LandmarksService>();
             services.AddScoped<IMountainsService, MountainsService>();
+            services.AddScoped<ITracksService, TracksService>();
 
             services.AddControllersWithViews();
         }

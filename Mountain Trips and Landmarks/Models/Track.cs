@@ -1,4 +1,5 @@
 ﻿using Mountain_Trips_and_Landmarks.Data;
+using Mountain_Trips_and_Landmarks.Data.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Mountain_Trips_and_Landmarks.Models
 {
-    public class Track
+    public class Track:IEntityBase
     {
         [Key]
-        public int TrackId { get; set; }
+        public int Id { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "Starting from")]
         public string StartingPoint { get; set; }
@@ -49,5 +50,8 @@ namespace Mountain_Trips_and_Landmarks.Models
         public int? PeakId { get; set; }
 
         public Peak Peak { get; set; }
+
+        public int? LandmarkId { get; set; }
+        public Landmark landmark { get; set; }
     }
 }

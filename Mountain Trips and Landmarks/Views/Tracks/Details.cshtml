@@ -1,0 +1,85 @@
+﻿@model Track
+
+@{ ViewData["Title"] = "Track details"; }
+
+<div class="row" >
+    
+<div class="col-md-8 offset-2">
+    <div class="card mb-12">
+        <div class="row g-0">
+            <div class="col-md-12">
+                <div class="card-header text-white bg-info">
+                    <p class="card-text">
+                        <h5 class="card-title">
+                            @Model.StartingPoint -> @Model.EndPoint
+                        </h5>
+                    </p>
+                </div>
+            </div>
+            <div class="md-4">
+                <img src="@Model.TrackCateogryURL" width="100%" alt="@Model.TrackCategory" />
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <p class="card-text"><b>Team Organization: </b>@Model.Highlights</p>
+                    <p class="card-text">
+                        <b>Mountain: </b>
+                        <a href="/Mountains/Details/@Model.MountainId">
+                            @Model.Mountain.Name
+                        </a>
+                    </p>
+                    <p class="card-text">
+                        <b>Peak: </b>
+                        <a asp-controller="Landmarks" asp-action="Details" asp-route-id="@Model.LandmarkId">
+                        </a>
+                    </p>
+                    <p class="card-text"><b>Mountain TreckingTime: </b>@Model.Mountain.TrekkingTime</p>
+                    <p class="card-text"><b>Mountain View </b><img src="@Model.Mountain.MountainPictureURL" width="111%" alt="@Model.TrackCategory" /></p>
+                    <p class="card-text"><b>Starting from: </b>@Model.StartingPoint</p>
+                    <p class="card-text"><b>End Destination: </b>@Model.EndPoint</p>
+                    <p class="card-text"><b>Category: </b>@Model.TrackCategory</p>
+                    <p class="card-text"><b>Starting date: </b>@Model.StartDate.ToString("dd MM yy")</p>
+                    <p class="card-text"><b>End date: </b>@Model.EndDate.ToString("dd MM yy")</p>
+                    <p class="card-text ">
+                        <b>Status: </b>
+                        @if (DateTime.Now >= Model.StartDate && DateTime.Now <= Model.EndDate)
+                        {
+                <span class="badge bg-success text-white">Available</span> }
+            else if (DateTime.Now >= Model.StartDate)
+            {
+                <span class="badge bg-warning text-white">Еxpired</span> }
+            else if (DateTime.Now <= Model.StartDate)
+            {
+                <span class="badge bg-info text-white">Upcoming</span>}
+                    </p>
+                    <p class="card-text">
+                        <b>Landmarks:</b>
+                        <hr />
+                        <div class="row">
+                            @foreach (var landmark in Model.Tracks_Landmarks)
+                            {
+                                <div class="column text-center">
+                                    <img class="border-info rounded-circle" src="@landmark.Landmark.LandmarkPictureURL" style="max-width: 150px" />
+                                    <br />
+                                    <a href="/Landmarks/Details/@landmark.LandmarkId">@landmark.Landmark.Name</a>
+                                </div>
+                            }
+                        </div>
+                    </p>
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card-footer">
+                    <p class="card-text">
+                        <a class="btn btn-outline-primary float-right" asp-action="Index">
+                            Back to List
+                        </a>
+                        <a class="btn btn-success text-white"><i class="bi bi-tree"></i>Add to Adventure List</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

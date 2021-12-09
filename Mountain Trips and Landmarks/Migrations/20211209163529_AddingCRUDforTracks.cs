@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mountain_Trips_and_Landmarks.Migrations
 {
-    public partial class AddingCRUDforMountains : Migration
+    public partial class AddingCRUDforTracks : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,10 +13,10 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MountainPictureURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MountainPictureURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TrekkingTime = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -122,7 +122,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 name: "Tracks",
                 columns: table => new
                 {
-                    TrackId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StartingPoint = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EndPoint = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -137,7 +137,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tracks", x => x.TrackId);
+                    table.PrimaryKey("PK_Tracks", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Tracks_Landmarks_LandmarkId",
                         column: x => x.LandmarkId,
@@ -179,7 +179,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                         name: "FK_Tracks_Landmarks_Tracks_TrackId",
                         column: x => x.TrackId,
                         principalTable: "Tracks",
-                        principalColumn: "TrackId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -204,7 +204,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                         name: "FK_Tracks_Mountains_Tracks_TrackId",
                         column: x => x.TrackId,
                         principalTable: "Tracks",
-                        principalColumn: "TrackId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -227,7 +227,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                         name: "FK_Tracks_Peaks_Tracks_TrackId",
                         column: x => x.TrackId,
                         principalTable: "Tracks",
-                        principalColumn: "TrackId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

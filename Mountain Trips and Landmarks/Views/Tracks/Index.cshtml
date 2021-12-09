@@ -4,7 +4,7 @@
     ViewData["Title"] = "List of Tracks";
 }
 
-<div class="row" ">
+<div class="row" >
     @foreach (var item in Model)
     {
         <div class="col-md-4 col-xs-6 border-primary mb-3">
@@ -54,7 +54,8 @@
                     <div class="col-md-12">
                         <div class="card-footer">
                             <p class="card-text">
-                                <a class="btn btn-outline-primary float-right"><i class="bi bi-eye-fill"></i>Show Detail</a>
+                                <a href="Tracks/Details/@item.Id" class="btn btn-outline-primary float-right">
+                                <i class="bi bi-eye-fill"></i>Show Details</a>
                                 <a class="btn btn-success text-white"><i class="bi bi-tree"></i>Add to Adventure List</a>
                             </p>
                         </div>

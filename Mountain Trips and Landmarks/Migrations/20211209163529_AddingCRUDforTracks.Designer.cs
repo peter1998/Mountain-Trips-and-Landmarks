@@ -10,8 +10,8 @@ using Mountain_Trips_and_Landmarks.Data;
 namespace Mountain_Trips_and_Landmarks.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211208133812_AddingCRUDforMountains")]
-    partial class AddingCRUDforMountains
+    [Migration("20211209163529_AddingCRUDforTracks")]
+    partial class AddingCRUDforTracks
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,12 +81,15 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MountainPictureURL")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TrekkingTime")
@@ -147,7 +150,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Track", b =>
                 {
-                    b.Property<int>("TrackId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -183,7 +186,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Property<string>("TrackCateogryURL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("TrackId");
+                    b.HasKey("Id");
 
                     b.HasIndex("LandmarkId");
 
