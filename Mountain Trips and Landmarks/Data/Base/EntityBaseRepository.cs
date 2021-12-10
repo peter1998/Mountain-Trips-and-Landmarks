@@ -27,6 +27,10 @@ namespace Mountain_Trips_and_Landmarks.Data.Base
             var entity = await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
             EntityEntry entityEntry = _context.Entry<T>(entity);
             entityEntry.State = EntityState.Deleted;
+            //Като се запамети в contexta :  DELETE statement conflicted with the REFERENCE constraint| The statement has been terminated. TODO..
+
+            
+
             await _context.SaveChangesAsync();
         }
 

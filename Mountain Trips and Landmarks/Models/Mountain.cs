@@ -37,13 +37,23 @@ namespace Mountain_Trips_and_Landmarks.Models
         public List<Tracks_Mountains> Tracks_Mountains { get; set; }
 
         //Track 
-       // public List<Track> Tracks { get; set; }
+        // public List<Track> Tracks { get; set; }
 
-        //Landmark 
-        public List<Landmark> Landmarks { get; set; }
 
-        //Peak
-        public List<Peak> Peaks { get; set; }
+        // Откоментирай надолу ако се счупи логика свързана по-надълбоко с контролерите, трябва да добавя към mountain peak , както към track за да зарежда всичко. и да няма null reference при seed-ване.
+
+       // Landmark
+          public List<Landmark> Landmarks { get; set; }
+
+      //  Peak
+            public List<Peak> Peaks { get; set; }
+
+        //public int? PeakId { get; set; }
+
+        //public Peak Peak { get; set; }
+
+        //public int? LandmarkId { get; set; }
+        //public Landmark landmark { get; set; }
 
     }
 }

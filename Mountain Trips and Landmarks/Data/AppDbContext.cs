@@ -22,7 +22,7 @@ namespace Mountain_Trips_and_Landmarks.Data
                 am.PeakId
             });
 
-            modelBuilder.Entity<Tracks_Peaks>().HasOne(m => m.Peak).WithMany(am => am.Tracks_Peaks).HasForeignKey(m => m.PeakId).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Tracks_Peaks>().HasOne(m => m.Peak).WithMany(am => am.Tracks_Peaks).HasForeignKey(m => m.PeakId).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Peaks_Mountains>().HasKey(am => new
             {
@@ -30,7 +30,7 @@ namespace Mountain_Trips_and_Landmarks.Data
                 am.MountainId
             });
 
-            modelBuilder.Entity<Peaks_Mountains>().HasOne(m => m.Peak).WithMany(am => am.Peaks_Mountains).HasForeignKey(m => m.PeakId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Peaks_Mountains>().HasOne(m => m.Peak).WithMany(am => am.Peaks_Mountains).HasForeignKey(m => m.PeakId).OnDelete(DeleteBehavior.ClientCascade);
             modelBuilder.Entity<Peaks_Mountains>().HasOne(m => m.Mountain).WithMany(am => am.Peaks_Mountains).HasForeignKey(m => m.MountainId).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Tracks_Landmarks>().HasKey(am => new

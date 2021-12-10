@@ -8,51 +8,24 @@ using System.Threading.Tasks;
 
 namespace Mountain_Trips_and_Landmarks.Data.Services
 {
+
     public class PeakService : EntityBaseRepository<Peak>,
         IPeakService
     {
-        
-
+        private readonly AppDbContext _context;
         public PeakService(AppDbContext context) :base(context)
         {
-            
+            _context = context;
         }
 
-        //public async Task AddAsync(Peak peak)
-        //{
-        //   await _context.Peaks.AddAsync(peak);
-        //   await _context.SaveChangesAsync();
-        //}
+        public async Task<Peak> GetPeakByIdAsync(int id)
+        {
+            var peakDetails = _context.Peaks
+               .Include(v => v.Peaks_Mountains)
+               .Include(v=>v.Tracks_Peaks)
+               .FirstOrDefaultAsync(n => n.Id == id);
 
-        //public async Task DeleteAsync(int id)
-        //{
-        //    var result = await _context.Peaks.FirstOrDefaultAsync(n => n.PeakId == id);
-        //    _context.Peaks.Remove(result);
-        //    await _context.SaveChangesAsync();
-        //}
-
-        //public async Task<IEnumerable<Peak>> GetAllAsync()
-        //{
-        //    var result = await _context.Peaks.ToListAsync();
-        //    return result;
-        //}
-
-        //public async Task<Peak> GetByIdAsync(int id)
-        //{
-        //    var result = await _context.Peaks.FirstOrDefaultAsync(n => n.PeakId == id);
-        //    return result;
-        //}
-
-        //public async Task<Peak> UpdateAsync(int id, Peak newPeak)
-        //{
-        //    // moe podobrenie
-        //    newPeak.PeakId = id;
-        //    // moe podobrenie
-        //    var peakForDelete = _context.Peaks.ToList().FirstOrDefault(n => n.PeakId == id);
-        //    _context.Remove(peakForDelete);
-        //    _context.Update(newPeak);
-        //    await _context.SaveChangesAsync();
-        //    return newPeak;
-        //}
+            return await peakDetails;
+        }
     }
 }

@@ -10,8 +10,8 @@ using Mountain_Trips_and_Landmarks.Data;
 namespace Mountain_Trips_and_Landmarks.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211209163529_AddingCRUDforTracks")]
-    partial class AddingCRUDforTracks
+    [Migration("20211210091740_fixingDeleteCrud")]
+    partial class fixingDeleteCrud
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -223,7 +223,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Property<int?>("MountainId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("TrackId", "MountainId");
@@ -239,6 +239,9 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("PeakId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("TrackId", "PeakId");
@@ -304,7 +307,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Track", b =>
                 {
-                    b.HasOne("Mountain_Trips_and_Landmarks.Models.Landmark", null)
+                    b.HasOne("Mountain_Trips_and_Landmarks.Models.Landmark", "landmark")
                         .WithMany("Tracks")
                         .HasForeignKey("LandmarkId");
 
@@ -315,6 +318,8 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Peak", "Peak")
                         .WithMany("Tracks")
                         .HasForeignKey("PeakId");
+
+                    b.Navigation("landmark");
 
                     b.Navigation("Mountain");
 
@@ -364,7 +369,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Peak", "Peak")
                         .WithMany("Tracks_Peaks")
                         .HasForeignKey("PeakId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Track", "Track")

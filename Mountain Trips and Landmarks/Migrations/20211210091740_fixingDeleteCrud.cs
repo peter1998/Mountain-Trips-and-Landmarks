@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mountain_Trips_and_Landmarks.Migrations
 {
-    public partial class AddingCRUDforTracks : Migration
+    public partial class fixingDeleteCrud : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -189,7 +189,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 {
                     TrackId = table.Column<int>(type: "int", nullable: false),
                     MountainId = table.Column<int>(type: "int", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -213,7 +213,8 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 columns: table => new
                 {
                     TrackId = table.Column<int>(type: "int", nullable: false),
-                    PeakId = table.Column<int>(type: "int", nullable: false)
+                    PeakId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -222,7 +223,8 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                         name: "FK_Tracks_Peaks_Peaks_PeakId",
                         column: x => x.PeakId,
                         principalTable: "Peaks",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Tracks_Peaks_Tracks_TrackId",
                         column: x => x.TrackId,

@@ -22,17 +22,6 @@
             <div class="col-md-6">
                 <div class="card-body">
                     <p class="card-text"><b>Team Organization: </b>@Model.Highlights</p>
-                    <p class="card-text">
-                        <b>Mountain: </b>
-                        <a href="/Mountains/Details/@Model.MountainId">
-                            @Model.Mountain.Name
-                        </a>
-                    </p>
-                    <p class="card-text">
-                        <b>Peak: </b>
-                        <a asp-controller="Landmarks" asp-action="Details" asp-route-id="@Model.LandmarkId">
-                        </a>
-                    </p>
                     <p class="card-text"><b>Mountain TreckingTime: </b>@Model.Mountain.TrekkingTime</p>
                     <p class="card-text"><b>Mountain View </b><img src="@Model.Mountain.MountainPictureURL" width="111%" alt="@Model.TrackCategory" /></p>
                     <p class="card-text"><b>Starting from: </b>@Model.StartingPoint</p>
@@ -51,6 +40,28 @@
             else if (DateTime.Now <= Model.StartDate)
             {
                 <span class="badge bg-info text-white">Upcoming</span>}
+                    </p>
+                    <p class="card-text">
+                        <b>Mountain: </b>
+                        <a href="/Mountains/Details/@Model.MountainId">
+                            @Model.Mountain.Name
+                        </a>
+                    </p>
+                    <p class="card-text">
+                        @*<b>Peak: </b>
+                        <a asp-controller="Landmarks" asp-action="Details" asp-route-id="@Model.LandmarkId">
+                        </a>*@
+                        <b>Peak:</b>
+                        <hr />
+                        <div class="row">
+                            @foreach (var peak in Model.Tracks_Peaks)
+                            {
+                    <div class="column text-center">
+                        <img class="border-info rounded-circle" src="@peak.Peak.Logo" style="max-width: 150px" />
+                        <br />
+                        <a href="/Peaks/Details/@peak.PeakId">@peak.Peak.Name</a>
+                    </div>}
+                        </div>
                     </p>
                     <p class="card-text">
                         <b>Landmarks:</b>

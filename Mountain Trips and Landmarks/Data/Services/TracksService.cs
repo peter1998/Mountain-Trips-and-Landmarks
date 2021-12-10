@@ -20,7 +20,7 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
         {
             var trackDetails = _context.Tracks
                .Include(c => c.Mountain)
-               .Include(c => c.Peak)
+               .Include(c => c.Tracks_Peaks).ThenInclude(a=>a.Peak)
                .Include(v => v.Tracks_Landmarks).ThenInclude(a => a.Landmark)
                .FirstOrDefaultAsync(n => n.Id == id);
 

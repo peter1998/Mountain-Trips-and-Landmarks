@@ -15,6 +15,10 @@ namespace Mountain_Trips_and_Landmarks.Data
             //Mountain
             Stack<Mountain> mountainStack = new Stack<Mountain>();
             List<Mountain> mountainList = new List<Mountain>();
+
+            //Peak
+            Stack<Peak> peakStack = new Stack<Peak>();
+            List<Peak> PeakList = new List<Peak>();
             //Track
             Stack<Track> trackStack = new Stack<Track>();
             List<Track> trackList = new List<Track>();
@@ -24,6 +28,117 @@ namespace Mountain_Trips_and_Landmarks.Data
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
                 context.Database.EnsureCreated();
+
+                if (!context.Peaks.Any())
+                {
+                    context.Peaks.AddRange(new List<Peak>()
+                        {
+                            new Peak()
+                            {
+                                Name = "Kamenitsa Peak",
+                                Logo = "https://media.istockphoto.com/photos/kamenitsa-peak-and-its-reflection-in-a-lake-in-pirin-national-park-picture-id1341488783",
+                                Description = @"Kamenitsa is a peak in the Pirin mountain range, south-western Bulgaria. It is located in the northern part of Pirin on the 22 km-long
+Kamenitsa secondary ridge between the summits of Malka Kamenitsa to the north and Yalovarnika (2,763 m) to the south. Its height is 2,822 m which ranks it on the fifth place in Pirin, behind Vihren (2,914 m), Kutelo (2,908 m), Banski Suhodol (2,884 m) and Polezhan (2,851 m). The peak is built up of granite blocks covered in lichens.",
+
+                            },
+                            new Peak()
+                            {
+                                Name = "Snejanka",
+                                Logo = "https://media.istockphoto.com/photos/rhodopes-mountain-bulgaria-picture-id846763058",
+                                Description = @"It is located 15 km from the town of Smolyan. The peak is 1926 m high and is the highest peak in the area of Pamporovo resort an +
+                                d Bukova mountain ridge. At the top is a TV tower with a height of 156 meters, which is located at an altitude of 2082 m. Its cafe-panorama of 2019 m has a great view.",
+
+                            },
+                            new Peak()
+                            {
+                                Name = "Musala",
+                                Logo = "https://media.istockphoto.com/photos/ledenoto-lake-from-musala-peak-rila-mountain-picture-id613659486",
+                                Description = @"Musala  from Arabic through Ottoman Turkish: from Musalla, (near God) or (place for prayer)  is the highes
+t peak in the Rila Mountains, as well as in Bulgaria and the entire Balkan Peninsula, standing at 2,925 metres . With a topographic prominence of 2,473 metres , Musala is also the 6th highest peak by topographic prominence in mainland Europe. Musala is also the 3rd most topographically isolated major peak in Continental Europe",
+
+                            },
+                            new Peak()
+                            {
+                                Name = "Cherni Vruh",
+                                Logo = "https://media.istockphoto.com/photos/landscape-of-vitosha-mountain-from-cherni-vrah-peak-sofia-city-region-picture-id1091206830",
+                                Description = @"At the top there is a meteorological station, built in 1935 - shortly after the declaration of Vitosha National Park, the first of 
+its kind on the Balkan Peninsula. The station has a small tourist tea house, as well as a post of the Mountain Rescue Service (MRS). From the top there is an incredible view of the Sofia plain, Stara Planina and Rila",
+
+                            },
+                            new Peak()
+                            {
+                                Name = "Shipka monument peak",
+                                Logo = "https://media.istockphoto.com/photos/liberty-monument-of-shipka-picture-id1156245258?s=2048x2048",
+                                Description = @"Sveti Nikola (Shipka) is a peak in the Balkan Mountains with an altitude of 1326 m, located east of the Shipka Pass. Until November 23, 1951 the peak was named St. Nicholas, and then until October 7, 1977 - Stoletov peak. The peak symbolizes the heroism and self-sacrificing efforts for the liberation of Bulgaria from Ottoman rule.",
+
+                            },
+                              new Peak()
+                            {
+                                Name = "Koncheto ridge",
+                                Logo = "https://media.istockphoto.com/photos/part-of-the-koncheto-ridge-picture-id175325603?s=2048x2048",
+                                Description = @"Koncheto is a steep and difficult to access saddle in the Northern Pirin. It is located on the main mountain ridge at 2810 m. It occupies the lowest and narrowest part of the karst edge between the peaks Banski Suhodol from the northwest and Kutelo from the southeast. The length of the edge is about 400 m, and its narrowest part is about 150 m.",
+
+                            },
+                        });
+                }
+
+                PeakList.AddRange(new List<Peak>()
+                    {
+                            new Peak()
+                            {
+                                Name = "Kamenitsa Peak",
+                                Logo = "https://media.istockphoto.com/photos/kamenitsa-peak-and-its-reflection-in-a-lake-in-pirin-national-park-picture-id1341488783",
+                                Description = @"Kamenitsa is a peak in the Pirin mountain range, south-western Bulgaria. It is located in the northern part of Pirin on the 22 km-long
+Kamenitsa secondary ridge between the summits of Malka Kamenitsa to the north and Yalovarnika (2,763 m) to the south. Its height is 2,822 m which ranks it on the fifth place in Pirin, behind Vihren (2,914 m), Kutelo (2,908 m), Banski Suhodol (2,884 m) and Polezhan (2,851 m). The peak is built up of granite blocks covered in lichens.",
+
+                            },
+                            new Peak()
+                            {
+                                Name = "Snejanka",
+                                Logo = "https://media.istockphoto.com/photos/rhodopes-mountain-bulgaria-picture-id846763058",
+                                Description = @"It is located 15 km from the town of Smolyan. The peak is 1926 m high and is the highest peak in the area of Pamporovo resort an +
+                                d Bukova mountain ridge. At the top is a TV tower with a height of 156 meters, which is located at an altitude of 2082 m. Its cafe-panorama of 2019 m has a great view.",
+
+                            },
+                            new Peak()
+                            {
+                                Name = "Musala",
+                                Logo = "https://media.istockphoto.com/photos/ledenoto-lake-from-musala-peak-rila-mountain-picture-id613659486",
+                                Description = @"Musala  from Arabic through Ottoman Turkish: from Musalla, (near God) or (place for prayer)  is the highes
+t peak in the Rila Mountains, as well as in Bulgaria and the entire Balkan Peninsula, standing at 2,925 metres . With a topographic prominence of 2,473 metres , Musala is also the 6th highest peak by topographic prominence in mainland Europe. Musala is also the 3rd most topographically isolated major peak in Continental Europe",
+
+                            },
+                            new Peak()
+                            {
+                                Name = "Cherni Vruh",
+                                Logo = "https://media.istockphoto.com/photos/landscape-of-vitosha-mountain-from-cherni-vrah-peak-sofia-city-region-picture-id1091206830",
+                                Description = @"At the top there is a meteorological station, built in 1935 - shortly after the declaration of Vitosha National Park, the first of 
+its kind on the Balkan Peninsula. The station has a small tourist tea house, as well as a post of the Mountain Rescue Service (MRS). From the top there is an incredible view of the Sofia plain, Stara Planina and Rila",
+
+                            },
+                             new Peak()
+                            {
+                                Name = "Shipka monument peak",
+                                Logo = "https://media.istockphoto.com/photos/liberty-monument-of-shipka-picture-id1156245258?s=2048x2048",
+                                Description = @"Sveti Nikola (Shipka) is a peak in the Balkan Mountains with an altitude of 1326 m, located east of the Shipka Pass. Until November 23, 1951 the peak was named St. Nicholas, and then until October 7, 1977 - Stoletov peak. The peak symbolizes the heroism and self-sacrificing efforts for the liberation of Bulgaria from Ottoman rule.",
+
+                            },
+                              new Peak()
+                            {
+                                Name = "Koncheto ridge",
+                                Logo = "https://media.istockphoto.com/photos/part-of-the-koncheto-ridge-picture-id175325603?s=2048x2048",
+                                Description = @"Koncheto is a steep and difficult to access saddle in the Northern Pirin. It is located on the main mountain ridge at 2810 m. It occupies the lowest and narrowest part of the karst edge between the peaks Banski Suhodol from the northwest and Kutelo from the southeast. The length of the edge is about 400 m, and its narrowest part is about 150 m.",
+
+                            },
+                        });
+
+                Stack<Peak> peakStackInitializer = new Stack<Peak>(PeakList);
+                Stack<Peak> peakListStackInitializer = new Stack<Peak>(PeakList);
+
+
+                Stack<Peak> mountainseedStackInitializer = new Stack<Peak>(PeakList);
+                Stack<Peak> mountainseedListStackInitializer = new Stack<Peak>(PeakList);
+               
 
                 if (!context.Mountains.Any())
                 {
@@ -38,7 +153,7 @@ namespace Mountain_Trips_and_Landmarks.Data
 part of the Rila–Rhodope Massif. The highest summit is Musala at an altitude of 2,925 m which makes Rila the sixth highest mountain range in Europe after the Caucasus, the Alps, Sierra Nevada, the Pyrenees and Mount Etna, and the highest one between the Alps and the Caucasus. It spans a territory of 2,629 km2 with an average altitude of 1487 m. The mountain is believed to have been named after the river of the same name, which comes from the Old Bulgarian verb (рыти) meaning (to grub).",
                             MountainPictureURL = "https://media.istockphoto.com/photos/seven-rila-lakes-view-picture-id479305282",
                             TrekkingTime = 44,
-
+                          //  Peaks=mountainseedStackInitializer.Pop(),
                         },
                           new Mountain()
                         {
@@ -80,14 +195,14 @@ and 12 km wide. Its summit Golyam Debelets Peak rises to 1415 m",
                         },
                         new Mountain()
                         {
-                            
+
                             Name = "Vitosha",
                             Description = @"Vitosha  is a mountain massif, on the outskirts of Sofia, the capital of Bulgaria. Vitosha is one of the symbols of Sofia and the closest site for hiking, alpinism and skiing. Convenient bus lines and rope ways render the mountain easily accessible. Vitosha has the outlines of an enormous dome. The territory of the mountain includes 
                                             Vitosha nature park that encompasses the best known and most frequently visited parts.",
                             MountainPictureURL = "https://media.istockphoto.com/photos/landscape-with-moraine-at-vitosha-mountain-bulgaria-picture-id1203508303",
                             TrekkingTime = 12,
                         }
-                    });
+                    }) ;
                 }
                 // Needed list to give the Track the mountain property
 
@@ -152,6 +267,8 @@ Rila Mountains and 12 km wide. Its summit Golyam Debelets Peak rises to 1415 m",
                 Stack<Mountain> mountainStackInitializer = new Stack<Mountain>(mountainList);
                 Stack<Mountain> mountainListStackInitializer = new Stack<Mountain>(mountainList);
 
+                
+
                 if (!context.Landmarks.Any())
                 {
                     context.Landmarks.AddRange(new List<Landmark>()
@@ -199,52 +316,11 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
 2 km, and up to 150 m wide, with several ‘tributary’ stone rivers. The stone river is ‘descending’ from elevation 1800 m above sea level in Boeritsa Chalet area to 1410 m at Zlatnite Mostove site. The lower extremity of the stone river is known as Zlatnite Mostove site, a popular tourist destination accessible from Sofia by road",
                             LandmarkPictureURL = "https://media.istockphoto.com/photos/golden-bridges-or-rocks-river-phenomenon-picture-id923345134",
                             Country = "Bulgaria Vitosha",
-
                         },
                     });
                 }
 
-                if (!context.Peaks.Any())
-                {
-                    context.Peaks.AddRange(new List<Peak>()
-                        {
-                            new Peak()
-                            {
-                                Name = "Kamenitsa Peak",
-                                Logo = "https://media.istockphoto.com/photos/kamenitsa-peak-and-its-reflection-in-a-lake-in-pirin-national-park-picture-id1341488783",
-                                Description = @"Kamenitsa is a peak in the Pirin mountain range, south-western Bulgaria. It is located in the northern part of Pirin on the 22 km-long
-Kamenitsa secondary ridge between the summits of Malka Kamenitsa to the north and Yalovarnika (2,763 m) to the south. Its height is 2,822 m which ranks it on the fifth place in Pirin, behind Vihren (2,914 m), Kutelo (2,908 m), Banski Suhodol (2,884 m) and Polezhan (2,851 m). The peak is built up of granite blocks covered in lichens.",
-
-                            },
-                            new Peak()
-                            {
-                                Name = "Snejanka",
-                                Logo = "https://media.istockphoto.com/photos/rhodopes-mountain-bulgaria-picture-id846763058",
-                                Description = @"It is located 15 km from the town of Smolyan. The peak is 1926 m high and is the highest peak in the area of Pamporovo resort an +
-                                d Bukova mountain ridge. At the top is a TV tower with a height of 156 meters, which is located at an altitude of 2082 m. Its cafe-panorama of 2019 m has a great view.",
-
-                            },
-                            new Peak()
-                            {
-                                Name = "Musala",
-                                Logo = "https://media.istockphoto.com/photos/ledenoto-lake-from-musala-peak-rila-mountain-picture-id613659486",
-                                Description = @"Musala  from Arabic through Ottoman Turkish: from Musalla, (near God) or (place for prayer)  is the highes
-t peak in the Rila Mountains, as well as in Bulgaria and the entire Balkan Peninsula, standing at 2,925 metres . With a topographic prominence of 2,473 metres , Musala is also the 6th highest peak by topographic prominence in mainland Europe. Musala is also the 3rd most topographically isolated major peak in Continental Europe",
-
-                            },
-                            new Peak()
-                            {
-                                Name = "Cherni Vruh",
-                                Logo = "https://media.istockphoto.com/photos/landscape-of-vitosha-mountain-from-cherni-vrah-peak-sofia-city-region-picture-id1091206830",
-                                Description = @"At the top there is a meteorological station, built in 1935 - shortly after the declaration of Vitosha National Park, the first of 
-its kind on the Balkan Peninsula. The station has a small tourist tea house, as well as a post of the Mountain Rescue Service (MRS). From the top there is an incredible view of the Sofia plain, Stara Planina and Rila",
-
-                            },
-                        });
-                }
-                    //Rila - Pirin - Rhodopes - Stara Planina - Verila
-
-                    context.SaveChanges();
+               
 
                 trackList.AddRange(new List<Track>()
                     {
@@ -257,8 +333,8 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             EndDate = DateTime.ParseExact("02/02/2022","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Ski,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/group-skiing-picture-id1270325495",
-                            Mountain  = mountainStackInitializer.Pop()
-
+                            Mountain  = mountainStackInitializer.Pop(),
+                            Peak = peakStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -269,9 +345,9 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             EndDate = DateTime.ParseExact("12/02/2022","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Ski,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/group-skiing-picture-id1270325495",
-                            Mountain  = mountainStackInitializer.Pop()
+                            Mountain  = mountainStackInitializer.Pop(),
                             //Landmark = landmarkStackInitializer.Pop()
-                            //Peak = landmarkStackInitializer.Pop()
+                            Peak = peakStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -282,9 +358,9 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             EndDate = DateTime.ParseExact("01/09/2022","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Expedition,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/family-hiking-on-summer-vacation-in-colorado-mountains-picture-id1151466121",
-                            Mountain  = mountainStackInitializer.Pop()
+                            Mountain  = mountainStackInitializer.Pop(),
                             //Landmark = landmarkStackInitializer.Pop()
-                            //Peak = landmarkStackInitializer.Pop()
+                            Peak = peakStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -295,9 +371,9 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             EndDate = DateTime.ParseExact("04/06/2022","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Downhill,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/professional-bike-rider-jumping-during-downhill-ride-on-his-bicycle-picture-id1301763194",
-                            Mountain  = mountainStackInitializer.Pop()
+                            Mountain  = mountainStackInitializer.Pop(),
                             //Landmark = landmarkStackInitializer.Pop()
-                            //Peak = landmarkStackInitializer.Pop()
+                            Peak = peakStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -308,9 +384,9 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             EndDate = DateTime.ParseExact("08/04/2016","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Hiking,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
-                            Mountain  = mountainStackInitializer.Pop()
+                            Mountain  = mountainStackInitializer.Pop(),
                             //Landmark = landmarkStackInitializer.Pop()
-                            //Peak = landmarkStackInitializer.Pop()
+                            Peak = peakStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -321,9 +397,9 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             EndDate = DateTime.ParseExact("08/04/2016","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Hiking,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
-                            Mountain  = mountainStackInitializer.Pop()
+                            Mountain  = mountainStackInitializer.Pop(),
                             //Landmark = landmarkStackInitializer.Pop()
-                            //Peak = landmarkStackInitializer.Pop()
+                            Peak = peakStackInitializer.Pop()
                         },
                     });
 
@@ -341,8 +417,8 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             EndDate = DateTime.ParseExact("02/02/2022","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Ski,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/group-skiing-picture-id1270325495",
-                            Mountain  = mountainListStackInitializer.Pop()
-
+                            Mountain  = mountainListStackInitializer.Pop(),
+                            Peak = peakListStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -353,9 +429,9 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             EndDate = DateTime.ParseExact("12/02/2022","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Ski,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/group-skiing-picture-id1270325495",
-                            Mountain  = mountainListStackInitializer.Pop()
+                            Mountain  = mountainListStackInitializer.Pop(),
                             //Landmark = landmarkStackInitializer.Pop()
-                            //Peak = landmarkStackInitializer.Pop()
+                            Peak = peakListStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -366,9 +442,9 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             EndDate = DateTime.ParseExact("01/09/2022","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Expedition,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/family-hiking-on-summer-vacation-in-colorado-mountains-picture-id1151466121",
-                            Mountain  = mountainListStackInitializer.Pop()
+                            Mountain  = mountainListStackInitializer.Pop(),
                             //Landmark = landmarkStackInitializer.Pop()
-                            //Peak = landmarkStackInitializer.Pop()
+                            Peak = peakListStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -379,9 +455,9 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             EndDate = DateTime.ParseExact("04/06/2022","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Downhill,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/professional-bike-rider-jumping-during-downhill-ride-on-his-bicycle-picture-id1301763194",
-                            Mountain  = mountainListStackInitializer.Pop()
+                            Mountain  = mountainListStackInitializer.Pop(),
                             //Landmark = landmarkStackInitializer.Pop()
-                            //Peak = landmarkStackInitializer.Pop()
+                            Peak = peakListStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -392,9 +468,9 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             EndDate = DateTime.ParseExact("08/04/2016","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Hiking,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
-                            Mountain  = mountainListStackInitializer.Pop()
+                            Mountain  = mountainListStackInitializer.Pop(),
                             //Landmark = landmarkStackInitializer.Pop()
-                            //Peak = landmarkStackInitializer.Pop()
+                            Peak = peakListStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -405,9 +481,9 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                             EndDate = DateTime.ParseExact("08/04/2016","dd/MM/yyyy", null),
                             TrackCategory = TrackCategory.Hiking,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
-                            Mountain  = mountainListStackInitializer.Pop()
+                            Mountain  = mountainListStackInitializer.Pop(),
                             //Landmark = landmarkStackInitializer.Pop()
-                            //Peak = landmarkStackInitializer.Pop()
+                            Peak = peakListStackInitializer.Pop()
                         },
                     });
                 }
@@ -416,6 +492,110 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                 
 
                 context.SaveChanges();
+                if (!context.Peaks_Mountains.Any())
+                {
+                    context.Peaks_Mountains.AddRange(new List<Peaks_Mountains>()
+                            {
+                                new Peaks_Mountains()
+                                {
+                                    PeakId = 1,
+                                    MountainId = 1
+                                },
+                                 new Peaks_Mountains()
+                                {
+                                    PeakId = 2,
+                                    MountainId = 2
+                                },
+                                  new Peaks_Mountains()
+                                {
+                                    PeakId = 3,
+                                    MountainId = 3
+                                },
+                                   new Peaks_Mountains()
+                                {
+                                    PeakId = 4,
+                                    MountainId = 4
+                                },
+                                     new Peaks_Mountains()
+                                {
+                                    PeakId = 5,
+                                    MountainId = 5
+                                },
+                                       new Peaks_Mountains()
+                                {
+                                    PeakId = 6,
+                                    MountainId = 6
+                                },
+
+                            });
+                }
+
+                context.SaveChanges();
+                if (!context.Tracks_Peaks.Any())
+                {
+                    context.Tracks_Peaks.AddRange(new List<Tracks_Peaks>()
+                            {
+                                new Tracks_Peaks()
+                                {
+                                    TrackId = 1,
+                                    PeakId = 1
+                                },
+                                 new Tracks_Peaks()
+                                {
+                                    TrackId = 2,
+                                    PeakId = 2
+                                },
+                                  new Tracks_Peaks()
+                                {
+                                    TrackId = 3,
+                                    PeakId = 3
+                                },
+                                   new Tracks_Peaks()
+                                {
+                                    TrackId = 4,
+                                    PeakId = 4
+                                },
+                                    new Tracks_Peaks()
+                                {
+                                    TrackId = 5,
+                                    PeakId = 5
+                                },
+                                     new Tracks_Peaks()
+                                {
+                                    TrackId = 6,
+                                    PeakId = 6
+                                },
+
+                            });
+                };
+                context.SaveChanges();
+                if (!context.Tracks_Landmarks.Any())
+                {
+                    context.Tracks_Landmarks.AddRange(new List<Tracks_Landmarks>()
+                            {
+                                new Tracks_Landmarks()
+                                {
+                                    TrackId = 1,
+                                    LandmarkId = 1
+                                },
+                                 new Tracks_Landmarks()
+                                {
+                                    TrackId = 2,
+                                    LandmarkId = 2
+                                },
+                                  new Tracks_Landmarks()
+                                {
+                                    TrackId = 3,
+                                    LandmarkId = 3
+                                },
+                                   new Tracks_Landmarks()
+                                {
+                                    TrackId = 3,
+                                    LandmarkId = 4
+                                },
+
+                            });
+                }
 
                 if (!context.Tracks_Mountains.Any())
                 {
@@ -441,95 +621,15 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
                                     TrackId = 4,
                                     MountainId = 4
                                 },
-
-                            });
-                }
-
-                context.SaveChanges();
-
-                if (!context.Peaks_Mountains.Any())
-                {
-                    context.Peaks_Mountains.AddRange(new List<Peaks_Mountains>()
-                            {
-                                new Peaks_Mountains()
+                                    new Tracks_Mountains()
                                 {
-                                    PeakId = 1,
-                                    MountainId = 1
+                                    TrackId = 5,
+                                    MountainId = 5
                                 },
-                                 new Peaks_Mountains()
+                                     new Tracks_Mountains()
                                 {
-                                    PeakId = 2,
-                                    MountainId = 2
-                                },
-                                  new Peaks_Mountains()
-                                {
-                                    PeakId = 3,
-                                    MountainId = 3
-                                },
-                                   new Peaks_Mountains()
-                                {
-                                    PeakId = 4,
-                                    MountainId = 4
-                                },
-
-                            });
-                }
-
-                context.SaveChanges();
-
-                if (!context.Tracks_Peaks.Any())
-                {
-                    context.Tracks_Peaks.AddRange(new List<Tracks_Peaks>()
-                            {
-                                new Tracks_Peaks()
-                                {
-                                    TrackId = 1,
-                                    PeakId = 1
-                                },
-                                 new Tracks_Peaks()
-                                {
-                                    TrackId = 2,
-                                    PeakId = 2
-                                },
-                                  new Tracks_Peaks()
-                                {
-                                    TrackId = 3,
-                                    PeakId = 3
-                                },
-                                   new Tracks_Peaks()
-                                {
-                                    TrackId = 4,
-                                    PeakId = 4
-                                },
-
-                            });
-                        }
-
-                context.SaveChanges();
-
-                if (!context.Tracks_Landmarks.Any())
-                {
-                    context.Tracks_Landmarks.AddRange(new List<Tracks_Landmarks>()
-                            {
-                                new Tracks_Landmarks()
-                                {
-                                    TrackId = 1,
-                                    LandmarkId = 1
-                                },
-                                 new Tracks_Landmarks()
-                                {
-                                    TrackId = 2,
-                                    LandmarkId = 2
-                                },
-                                  new Tracks_Landmarks()
-                                {
-                                    TrackId = 3,
-                                    LandmarkId = 3
-                                },
-                                   new Tracks_Landmarks()
-                                {
-                                    TrackId = 3,
-                                    LandmarkId = 4
+                                    TrackId = 6,
+                                    MountainId = 6
                                 },
 
                             });
