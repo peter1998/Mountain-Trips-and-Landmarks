@@ -23,6 +23,7 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
             var peakDetails = _context.Peaks
                .Include(v => v.Peaks_Mountains)
                .Include(v=>v.Tracks_Peaks)
+               .Include(v=>v.Tracks)
                .FirstOrDefaultAsync(n => n.Id == id);
 
             return await peakDetails;
