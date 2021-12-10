@@ -88,12 +88,15 @@ namespace Mountain_Trips_and_Landmarks.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var mountainDetails = await _service.GetByIdAsync(id);
+            var mountainDetails = await _service.GetMountainByIdAsync(id);
 
             if (mountainDetails == null)
             {
                 return View("NotFound");
             }
+
+            //mountainDetails.WHAT.REMOVEALL(x=> true); TOO MANY
+            mountainDetails.Tracks_Mountains.RemoveAll(x => true);
 
 
             await _service.DeleteAsync(id);

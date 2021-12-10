@@ -9,5 +9,6 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
 {
     public interface ILandmarksService: IEntityBaseRepository<Landmark>
     {
+        Task<Landmark> GetLandmarkByIdAsync(int id);
     }
 }

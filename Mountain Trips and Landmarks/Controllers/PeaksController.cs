@@ -86,17 +86,12 @@ namespace Mountain_Trips_and_Landmarks.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            //var peakDetails = await _service.GetByIdAsync(id);
             var peakDetails = await _service.GetPeakByIdAsync(id);
 
             if (peakDetails == null)
             {
                 return View("NotFound");
             }
-            //_service.GetAllAsync
-            //await _service.GetPeakByIdAsync(id);
-
-            //peakDetails.Peaks_Mountains.RemoveAll();
 
             peakDetails.Tracks_Peaks.RemoveAll(x => true);
 

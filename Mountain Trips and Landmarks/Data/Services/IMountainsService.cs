@@ -9,5 +9,6 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
 {
    public interface IMountainsService:IEntityBaseRepository<Mountain>
     {
+        Task<Mountain> GetMountainByIdAsync(int id);
     }
 }

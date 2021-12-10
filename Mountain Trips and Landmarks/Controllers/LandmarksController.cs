@@ -100,13 +100,14 @@ namespace Mountain_Trips_and_Landmarks.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var landmarkDetails = await _service.GetByIdAsync(id);
+            var landmarkDetails = await _service.GetLandmarkByIdAsync(id);
 
             if (landmarkDetails == null)
             {
                 return View("NotFound");
             }
 
+            landmarkDetails.Tracks_Landmarks.RemoveAll(x => true);
 
             await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
