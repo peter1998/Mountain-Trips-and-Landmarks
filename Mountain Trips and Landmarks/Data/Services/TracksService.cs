@@ -22,6 +22,7 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
                .Include(c => c.Mountain)
                .Include(c => c.Tracks_Peaks).ThenInclude(a=>a.Peak)
                .Include(v => v.Tracks_Landmarks).ThenInclude(a => a.Landmark)
+               .Include(m=> m.Tracks_Mountains).ThenInclude(m=>m.Mountain)
                .FirstOrDefaultAsync(n => n.Id == id);
 
             return await trackDetails;

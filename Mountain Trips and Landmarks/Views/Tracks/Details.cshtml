@@ -42,25 +42,35 @@
                 <span class="badge bg-info text-white">Upcoming</span>}
                     </p>
                     <p class="card-text">
+                        <b>Mountains:</b>
+                        <hr />
+                        <div class="row">
+                            @foreach (var mountain in Model.Tracks_Mountains)
+                            {
+                <div class="column text-center">
+                    <img class="border-info rounded-circle" src="@mountain.Mountain.MountainPictureURL" style="max-width: 150px" />
+                    <br />
+                    <a href="/Mountains/Details/@mountain.MountainId">@mountain.Mountain.Name</a>
+                </div>}
+                        </div>
+                    </p>
+                    @*<p class="card-text">
                         <b>Mountain: </b>
                         <a href="/Mountains/Details/@Model.MountainId">
                             @Model.Mountain.Name
                         </a>
-                    </p>
+                    </p>*@
                     <p class="card-text">
-                        @*<b>Peak: </b>
-                        <a asp-controller="Landmarks" asp-action="Details" asp-route-id="@Model.LandmarkId">
-                        </a>*@
                         <b>Peak:</b>
                         <hr />
                         <div class="row">
                             @foreach (var peak in Model.Tracks_Peaks)
                             {
-                    <div class="column text-center">
-                        <img class="border-info rounded-circle" src="@peak.Peak.Logo" style="max-width: 150px" />
-                        <br />
-                        <a href="/Peaks/Details/@peak.PeakId">@peak.Peak.Name</a>
-                    </div>}
+                <div class="column text-center">
+                    <img class="border-info rounded-circle" src="@peak.Peak.Logo" style="max-width: 150px" />
+                    <br />
+                    <a href="/Peaks/Details/@peak.PeakId">@peak.Peak.Name</a>
+                </div>}
                         </div>
                     </p>
                     <p class="card-text">
@@ -69,12 +79,11 @@
                         <div class="row">
                             @foreach (var landmark in Model.Tracks_Landmarks)
                             {
-                                <div class="column text-center">
-                                    <img class="border-info rounded-circle" src="@landmark.Landmark.LandmarkPictureURL" style="max-width: 150px" />
-                                    <br />
-                                    <a href="/Landmarks/Details/@landmark.LandmarkId">@landmark.Landmark.Name</a>
-                                </div>
-                            }
+                <div class="column text-center">
+                    <img class="border-info rounded-circle" src="@landmark.Landmark.LandmarkPictureURL" style="max-width: 150px" />
+                    <br />
+                    <a href="/Landmarks/Details/@landmark.LandmarkId">@landmark.Landmark.Name</a>
+                </div>}
                         </div>
                     </p>
 
