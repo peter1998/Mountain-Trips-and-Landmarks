@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Mountain_Trips_and_Landmarks.Data;
 using Mountain_Trips_and_Landmarks.Data.Services;
@@ -28,6 +29,20 @@ namespace Mountain_Trips_and_Landmarks.Controllers
         {
             var trackDetail = await _service.GetTrackByIdAsync(id);
             return View(trackDetail);
+        }
+
+        //Get: Tracks/Create
+        public async Task<IActionResult> Create()
+        {
+            var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
+
+            ViewBag.Peaks = new SelectList(movieDropdownsData.Peaks, "Id", "Name");
+            ViewBag.Mountains = new SelectList(movieDropdownsData.Mountains, "Id", "Name");
+            ViewBag.Landmarks = new SelectList(movieDropdownsData.Landmarks, "Id", "Name");
+
+
+
+            return View();
         }
     }
 }

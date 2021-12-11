@@ -488,10 +488,6 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                     });
                 }
 
-
-                
-
-                context.SaveChanges();
                 if (!context.Peaks_Mountains.Any())
                 {
                     context.Peaks_Mountains.AddRange(new List<Peaks_Mountains>()
@@ -529,8 +525,6 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
 
                             });
                 }
-
-                context.SaveChanges();
                 if (!context.Tracks_Peaks.Any())
                 {
                     context.Tracks_Peaks.AddRange(new List<Tracks_Peaks>()
@@ -568,7 +562,6 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
 
                             });
                 };
-                context.SaveChanges();
                 if (!context.Tracks_Landmarks.Any())
                 {
                     context.Tracks_Landmarks.AddRange(new List<Tracks_Landmarks>()

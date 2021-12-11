@@ -1,4 +1,5 @@
 ﻿using Mountain_Trips_and_Landmarks.Data.Base;
+using Mountain_Trips_and_Landmarks.Data.ViewModels;
 using Mountain_Trips_and_Landmarks.Models;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,8 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
     public interface ITracksService: IEntityBaseRepository<Track>
     {
         Task<Track> GetTrackByIdAsync(int id);
+        Task<NewMovieDropdownsVM> GetNewMovieDropdownsValues();
+
+        Task AddNewTrack(NewTrackVm data);
     }
 }
