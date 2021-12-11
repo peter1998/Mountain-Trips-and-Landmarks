@@ -21,8 +21,8 @@ namespace Mountain_Trips_and_Landmarks.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var allMountains = await _service.GetAllAsync(n => n.Mountain);
-            return View(allMountains);
+            var allTracks = await _service.GetAllTracksAsync();
+            return View(allTracks);
         }
 
         //Get: Tracks/Details/1

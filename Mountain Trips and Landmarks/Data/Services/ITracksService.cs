@@ -10,6 +10,7 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
 {
     public interface ITracksService: IEntityBaseRepository<Track>
     {
+        Task<List<Track>> GetAllTracksAsync();
         Task<Track> GetTrackByIdAsync(int id);
         Task<NewMovieDropdownsVM> GetNewTrackDropdownsValues();
 

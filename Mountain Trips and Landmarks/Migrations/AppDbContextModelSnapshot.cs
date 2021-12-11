@@ -295,7 +295,7 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Peak", "Peak")
                         .WithMany("Peaks_Mountains")
                         .HasForeignKey("PeakId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Mountain");

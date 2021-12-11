@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mountain_Trips_and_Landmarks.Migrations
 {
-    public partial class fixingDeleteCrud : Migration
+    public partial class addedLandmarksViewInTracks : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

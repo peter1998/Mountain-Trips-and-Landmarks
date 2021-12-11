@@ -19,6 +19,11 @@ namespace Mountain_Trips_and_Landmarks.Data
             //Peak
             Stack<Peak> peakStack = new Stack<Peak>();
             List<Peak> PeakList = new List<Peak>();
+
+            //Landmark
+            Stack<Landmark> landmarkStack = new Stack<Landmark>();
+            List<Landmark> landmarkList = new List<Landmark>();
+
             //Track
             Stack<Track> trackStack = new Stack<Track>();
             List<Track> trackList = new List<Track>();
@@ -145,7 +150,6 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
 
                     context.Mountains.AddRange(new List<Mountain>()
                     {
-                        //Rila - Pirin - Rhodopes - Stara Planina - Verila
                          new Mountain()
                         {
                             Name = "Rila",
@@ -153,7 +157,7 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
 part of the Rila–Rhodope Massif. The highest summit is Musala at an altitude of 2,925 m which makes Rila the sixth highest mountain range in Europe after the Caucasus, the Alps, Sierra Nevada, the Pyrenees and Mount Etna, and the highest one between the Alps and the Caucasus. It spans a territory of 2,629 km2 with an average altitude of 1487 m. The mountain is believed to have been named after the river of the same name, which comes from the Old Bulgarian verb (рыти) meaning (to grub).",
                             MountainPictureURL = "https://media.istockphoto.com/photos/seven-rila-lakes-view-picture-id479305282",
                             TrekkingTime = 44,
-                          //  Peaks=mountainseedStackInitializer.Pop(),
+                            //Peaks=mountainseedStackInitializer.Pop(),
                         },
                           new Mountain()
                         {
@@ -204,11 +208,11 @@ and 12 km wide. Its summit Golyam Debelets Peak rises to 1415 m",
                         }
                     }) ;
                 }
+                //context.Mountains.Peaks.AddRange(mountainseedStackInitializer)
                 // Needed list to give the Track the mountain property
 
                 mountainList.AddRange(new List<Mountain>()
                     {
-                    //Vitosha-Pirin-Rila-Rhodopes-StaraPlanina
                         new Mountain()
                         {
                             Name = "Vitosha",
@@ -267,6 +271,59 @@ Rila Mountains and 12 km wide. Its summit Golyam Debelets Peak rises to 1415 m",
                 Stack<Mountain> mountainStackInitializer = new Stack<Mountain>(mountainList);
                 Stack<Mountain> mountainListStackInitializer = new Stack<Mountain>(mountainList);
 
+                landmarkList.AddRange(new List<Landmark>(){
+                     new Landmark()
+                        {
+                            Name = "Ski Zone Borovets",
+                            Description = @"Borovets is the oldest Bulgarian winter resort with a history that dates back to 1896. Borovets was originally establis
+hed at the end of the 19th Century as a hunting place for the Bulgarian Kings. Borovets gradually developed into a modern ski resort with hotels, restaurants, bars and a network of ski runs and lifts along the slopes of the Rila Mountains, providing for a whole range of winter sports. ",
+                            LandmarkPictureURL = "https://media.istockphoto.com/photos/mountain-forest-arkhyz-picture-id500694572",
+                            Country = "Bulgaria Rila",
+
+                        },
+                        new Landmark()
+                        {
+                            Name = "Monastery of Saint Ivan of Rila",
+                            Description = @"The Monastery of Saint Ivan of Rila, better known as the Rila Monastery  is the largest and most famous Eastern Orthodox monastery in Bulga
+ria. It is situated in the southwestern Rila Mountains, 117 km south of the capital Sofia in the deep valley of the Rilska River at an elevation of 1,147 m  above sea level, inside of Rila Monastery Nature Park. The monastery is named after its founder, the hermit Ivan of Rila, and houses around 60 monks.",
+                            LandmarkPictureURL = "https://media.istockphoto.com/photos/tourist-visiting-monastery-of-saint-ivan-of-rila-kyustendil-region-picture-id958353710",
+                            Country = "Bulgaria Rila",
+
+                        },
+                        new Landmark()
+                        {
+                            Name = "Bansko",
+                            Description = @"Bansko is a town in southwestern Bulgaria, located at the foot of the Pirin Mountains at an elevation of 1200m above sea level. It is a ski res
+ort.",
+                            LandmarkPictureURL = "https://media.istockphoto.com/photos/houses-and-snow-mountains-panorama-in-bulgarian-ski-resort-bansko-picture-id635973512",
+                            Country = "Bulgaria Pirin",
+
+                        },
+                        new Landmark()
+                        {
+                            Name = "Pamporovo",
+                            Description = @"Pamporovo is a popular ski resort in Smolyan Province, southern Bulgaria. It is set amongst Norway spruce forests and is primarily visited du
+ring the winter for skiing and snowboarding. It is also a popular tourist place in summer. The hub of Pamporovo comprises a number of hotels and bars. It is a family-friendly resort and suited for complete beginners and intermediates.",
+                            LandmarkPictureURL = "https://media.istockphoto.com/photos/winter-landscape-of-rhodope-mountains-near-pamporovo-resort-from-picture-id999342042",
+                            Country = "Bulgaria Rhodopes",
+
+                        },
+                        new Landmark()
+                        {
+                            Name = "Golden Bridges",
+                            Description = @"Zlatnite Mostove is the largest stone river on Vitosha Mountain, Bulgaria. The feature is situated in the valley of Vladayska River, extending 2.
+2 km, and up to 150 m wide, with several ‘tributary’ stone rivers. The stone river is ‘descending’ from elevation 1800 m above sea level in Boeritsa Chalet area to 1410 m at Zlatnite Mostove site. The lower extremity of the stone river is known as Zlatnite Mostove site, a popular tourist destination accessible from Sofia by road",
+                            LandmarkPictureURL = "https://media.istockphoto.com/photos/golden-bridges-or-rocks-river-phenomenon-picture-id923345134",
+                            Country = "Bulgaria Vitosha",
+                        },
+                        new Landmark()
+                        {
+                            Name = "Village Panchareevo",
+                            Description = @"The village is located in the Pancharevo district of Sofia Municipality, Sofia District, 13 km from Sofia in the direction of the town of Samokov, along the Iskar River, on the southwestern slope of Lozenska Mountain.",
+                            LandmarkPictureURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Pancharevo_1.JPG/1024px-Pancharevo_1.JPG",
+                            Country = "Bulgaria Lozen Mountain",
+                        },
+                });
                 
 
                 if (!context.Landmarks.Any())
@@ -317,10 +374,19 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             LandmarkPictureURL = "https://media.istockphoto.com/photos/golden-bridges-or-rocks-river-phenomenon-picture-id923345134",
                             Country = "Bulgaria Vitosha",
                         },
+                        new Landmark()
+                        {
+                            Name = "Village Panchareevo",
+                            Description = @"The village is located in the Pancharevo district of Sofia Municipality, Sofia District, 13 km from Sofia in the direction of the town of Samokov, along the Iskar River, on the southwestern slope of Lozenska Mountain.",
+                            LandmarkPictureURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Pancharevo_1.JPG/1024px-Pancharevo_1.JPG",
+                            Country = "Bulgaria Lozen Mountain",
+                        },
                     });
                 }
 
-               
+                Stack<Landmark> landmarkseedStackInitializer = new Stack<Landmark>(landmarkList);
+                Stack<Landmark> landmarkseedListStackInitializer = new Stack<Landmark>(landmarkList);
+
 
                 trackList.AddRange(new List<Track>()
                     {
@@ -334,7 +400,8 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             TrackCategory = TrackCategory.Ski,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/group-skiing-picture-id1270325495",
                             Mountain  = mountainStackInitializer.Pop(),
-                            Peak = peakStackInitializer.Pop()
+                            Peak = peakStackInitializer.Pop(),
+                            landmark = landmarkseedStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -346,8 +413,8 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             TrackCategory = TrackCategory.Ski,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/group-skiing-picture-id1270325495",
                             Mountain  = mountainStackInitializer.Pop(),
-                            //Landmark = landmarkStackInitializer.Pop()
-                            Peak = peakStackInitializer.Pop()
+                            Peak = peakStackInitializer.Pop(),
+                            landmark = landmarkseedStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -359,8 +426,8 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             TrackCategory = TrackCategory.Expedition,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/family-hiking-on-summer-vacation-in-colorado-mountains-picture-id1151466121",
                             Mountain  = mountainStackInitializer.Pop(),
-                            //Landmark = landmarkStackInitializer.Pop()
-                            Peak = peakStackInitializer.Pop()
+                            Peak = peakStackInitializer.Pop(),
+                            landmark = landmarkseedStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -372,8 +439,8 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             TrackCategory = TrackCategory.Downhill,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/professional-bike-rider-jumping-during-downhill-ride-on-his-bicycle-picture-id1301763194",
                             Mountain  = mountainStackInitializer.Pop(),
-                            //Landmark = landmarkStackInitializer.Pop()
-                            Peak = peakStackInitializer.Pop()
+                            Peak = peakStackInitializer.Pop(),
+                            landmark = landmarkseedStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -385,8 +452,8 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             TrackCategory = TrackCategory.Hiking,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
                             Mountain  = mountainStackInitializer.Pop(),
-                            //Landmark = landmarkStackInitializer.Pop()
-                            Peak = peakStackInitializer.Pop()
+                            Peak = peakStackInitializer.Pop(),
+                            landmark = landmarkseedStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -398,8 +465,8 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             TrackCategory = TrackCategory.Hiking,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
                             Mountain  = mountainStackInitializer.Pop(),
-                            //Landmark = landmarkStackInitializer.Pop()
-                            Peak = peakStackInitializer.Pop()
+                            Peak = peakStackInitializer.Pop(),
+                            landmark = landmarkseedStackInitializer.Pop()
                         },
                     });
 
@@ -418,7 +485,8 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             TrackCategory = TrackCategory.Ski,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/group-skiing-picture-id1270325495",
                             Mountain  = mountainListStackInitializer.Pop(),
-                            Peak = peakListStackInitializer.Pop()
+                            Peak = peakListStackInitializer.Pop(),
+                            landmark = landmarkseedListStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -430,8 +498,8 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             TrackCategory = TrackCategory.Ski,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/group-skiing-picture-id1270325495",
                             Mountain  = mountainListStackInitializer.Pop(),
-                            //Landmark = landmarkStackInitializer.Pop()
-                            Peak = peakListStackInitializer.Pop()
+                            Peak = peakListStackInitializer.Pop(),
+                            landmark = landmarkseedListStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -443,8 +511,8 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             TrackCategory = TrackCategory.Expedition,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/family-hiking-on-summer-vacation-in-colorado-mountains-picture-id1151466121",
                             Mountain  = mountainListStackInitializer.Pop(),
-                            //Landmark = landmarkStackInitializer.Pop()
-                            Peak = peakListStackInitializer.Pop()
+                            Peak = peakListStackInitializer.Pop(),
+                            landmark = landmarkseedListStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -456,8 +524,8 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             TrackCategory = TrackCategory.Downhill,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/professional-bike-rider-jumping-during-downhill-ride-on-his-bicycle-picture-id1301763194",
                             Mountain  = mountainListStackInitializer.Pop(),
-                            //Landmark = landmarkStackInitializer.Pop()
-                            Peak = peakListStackInitializer.Pop()
+                            Peak = peakListStackInitializer.Pop(),
+                            landmark = landmarkseedListStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -469,8 +537,8 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             TrackCategory = TrackCategory.Hiking,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
                             Mountain  = mountainListStackInitializer.Pop(),
-                            //Landmark = landmarkStackInitializer.Pop()
-                            Peak = peakListStackInitializer.Pop()
+                            Peak = peakListStackInitializer.Pop(),
+                            landmark = landmarkseedListStackInitializer.Pop()
                         },
                         new Track()
                         {
@@ -482,12 +550,12 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             TrackCategory = TrackCategory.Hiking,
                             TrackCateogryURL = "https://media.istockphoto.com/photos/lake-near-and-house-bezbog-bansko-in-bulgaria-picture-id656381290",
                             Mountain  = mountainListStackInitializer.Pop(),
-                            //Landmark = landmarkStackInitializer.Pop()
-                            Peak = peakListStackInitializer.Pop()
+                            Peak = peakListStackInitializer.Pop(),
+                            landmark = landmarkseedListStackInitializer.Pop()
                         },
                     });
                 }
-
+                context.SaveChanges();
                 if (!context.Peaks_Mountains.Any())
                 {
                     context.Peaks_Mountains.AddRange(new List<Peaks_Mountains>()
@@ -589,7 +657,7 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
 
                             });
                 }
-
+                context.SaveChanges();
                 if (!context.Tracks_Mountains.Any())
                 {
                     context.Tracks_Mountains.AddRange(new List<Tracks_Mountains>()

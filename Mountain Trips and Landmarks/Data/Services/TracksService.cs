@@ -79,6 +79,20 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
             };
             return response;
         }
+        // For Index View Tracks
+        public async Task<List<Track>> GetAllTracksAsync()
+        {
+            var trackDetails = _context.Tracks
+               .Include(c => c.Mountain)
+               .Include(c => c.Tracks_Peaks).ThenInclude(a => a.Peak)
+               .Include(v => v.Tracks_Landmarks).ThenInclude(a => a.Landmark)
+               .Include(m => m.Tracks_Mountains).ThenInclude(m => m.Mountain)
+               .OrderBy(x => x.StartDate);
+
+
+
+            return await trackDetails.ToListAsync();
+        }
 
         public async Task<Track> GetTrackByIdAsync(int id)
         {
