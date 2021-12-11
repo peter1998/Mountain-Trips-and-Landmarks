@@ -17,22 +17,59 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
             _context = context;
         }
 
-        public async Task AddNewTrack(NewTrackVm data)
+        public async Task AddNewTrackAsync(NewTrackVm data)
         {
-            //var newTrack = new Track()
-            //{
-            //    TrackCateogryURL = data.TrackCateogryURL,
-            //    TrackCategory = data.TrackCategory,
-            //    StartingPoint = data.StartingPoint,
-            //    EndPoint = data.EndPoint,
-            //    Highlights = data.Highlights,
-            //    StartDate = data.StartDate,
-            //    EndDate = data.EndDate,
-            //    //LandmarkId = data.LandmarksIds
-            //};
+            var newTrack = new Track()
+            {
+                TrackCateogryURL = data.TrackCateogryURL,
+                TrackCategory = data.TrackCategory,
+                StartingPoint = data.StartingPoint,
+                EndPoint = data.EndPoint,
+                Highlights = data.Highlights,
+                StartDate = data.StartDate,
+                EndDate = data.EndDate,
+                
+            };
+            await _context.Tracks.AddAsync(newTrack);
+            await _context.SaveChangesAsync();
+
+            //Add Track Peaks 
+            foreach (var peakId in data.PeaksIds)
+            {
+                var newPeakTrack = new Tracks_Peaks()
+                {
+                    TrackId = newTrack.Id,
+                    PeakId = peakId
+                };
+                await _context.Tracks_Peaks.AddAsync(newPeakTrack);
+            }
+
+            //Add Track Landmarks
+            foreach (var landmarkId in data.LandmarksIds)
+            {
+                var newLandmarkTrack = new Tracks_Landmarks()
+                {
+                    TrackId = newTrack.Id,
+                    LandmarkId = landmarkId
+                };
+                await _context.Tracks_Landmarks.AddAsync(newLandmarkTrack);
+            }
+
+            //Add Track Mountains
+            foreach (var mountainId in data.MountainsIds)
+            {
+                var newMountainTrack = new Tracks_Mountains()
+                {
+                    TrackId = newTrack.Id,
+                    MountainId = mountainId
+                };
+                await _context.Tracks_Mountains.AddAsync(newMountainTrack);
+            }
+            await _context.SaveChangesAsync();
+
         }
 
-        public async Task<NewMovieDropdownsVM> GetNewMovieDropdownsValues()
+        public async Task<NewMovieDropdownsVM> GetNewTrackDropdownsValues()
         {
             var response = new NewMovieDropdownsVM()
             {
