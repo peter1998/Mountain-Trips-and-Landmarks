@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<Landmark>
 
-@{
-    ViewData["Title"] = "List of Landmarks";
-}
+@{ ViewData["Title"] = "List of Landmarks"; }
 
-<div class="row" >
+<div class="row">
     <div class="col-md-8 offset-md-2">
         <table class="table">
             <thead>
@@ -19,31 +17,29 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td class="align-middle">
-                            <img class="rounded-circle" src="@item.LandmarkPictureURL" alt="@item.Name" style="max-width:150px" />
-                        </td>
-                        <td class="align-middle">
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td class="align-middle">
-                            @Html.DisplayFor(modelItem => item.Country)
-                        </td>
-                        <td class="align-middle">
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td class="align-middle">
-                            <a href="/Landmarks/Edit/@item.Id" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i> Edit</a>
-                            <a href="/Landmarks/Details/@item.Id" class="btn btn-success"><i class="bi bi-eye"></i> Details</a>
-                            <a href="/Landmarks/Delete/@item.Id" class="btn btn-danger"><i class="bi bi-trash"> </i> Delete</a>
-                        </td>
-                    </tr>
-                }
+    <tr>
+        <td class="align-middle">
+            <img class="rounded-circle" src="@item.LandmarkPictureURL" alt="@item.Name" style="max-width:150px" />
+        </td>
+        <td class="align-middle">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td class="align-middle">
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td class="align-middle">
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td class="align-middle">
+            <a href="/Landmarks/Edit/@item.Id" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i> Edit</a>
+            <a href="/Landmarks/Details/@item.Id" class="btn btn-success"><i class="bi bi-eye"></i> Details</a>
+            <a href="/Landmarks/Delete/@item.Id" class="btn btn-danger"><i class="bi bi-trash"> </i> Delete</a>
+        </td>
+    </tr>}
             </tbody>
 
         </table>
     </div>
 </div>
-<div style="position: fixed; right: 350px;" class="text-white">
-    <a href="/Landmarks/Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New Landmark</a>
-</div>
+
+@await Html.PartialAsync("_CreateItem", "Landmarks")

@@ -50,6 +50,7 @@
     </div>
 </div>
 
-<div style="position: fixed; right: 350px;" class="text-white">
+@*<div style="position: fixed; right: 350px;" class="text-white">
     <a href="/Mountains/Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New Mountain</a>
-</div>
+</div>*@
+@await Html.PartialAsync("_CreateItem", "Mountains")

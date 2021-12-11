@@ -97,7 +97,7 @@ namespace Mountain_Trips_and_Landmarks.Controllers
 
             //mountainDetails.WHAT.REMOVEALL(x=> true); TOO MANY
             mountainDetails.Tracks_Mountains.RemoveAll(x => true);
-
+            mountainDetails.Peaks_Mountains.RemoveAll(x => true);
 
             await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));

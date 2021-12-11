@@ -1,9 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model IEnumerable<Peak>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@{
-    ViewData["Title"] = "List of Peaks";
-}
+@{ ViewData["Title"] = "List of Peaks"; }
 
 
 
@@ -23,30 +21,27 @@
 
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td class="align-middle">
-                            <img class="rounded-circle" src="@item.Logo" alt="@item.Name" style="max-width:150px" />
-                        </td>
-                        <td class="align-middle">
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td class="align-middle">
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td class="align-middle">
-                            <a href="/Peaks/Edit/@item.Id" class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i> Edit</a>
-                            <a href="/Peaks/Details/@item.Id" class="btn btn-success" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i> Details</a>
-                            <a href="/Peaks/Delete/@item.Id" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"> </i> Delete</a>
-                        </td>
-                    </tr>
-                }
+    <tr>
+        <td class="align-middle">
+            <img class="rounded-circle" src="@item.Logo" alt="@item.Name" style="max-width:150px" />
+        </td>
+        <td class="align-middle">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td class="align-middle">
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td class="align-middle">
+            <a href="/Peaks/Edit/@item.Id" class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i> Edit</a>
+            <a href="/Peaks/Details/@item.Id" class="btn btn-success" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i> Details</a>
+            <a href="/Peaks/Delete/@item.Id" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"> </i> Delete</a>
+        </td>
+    </tr>}
             </tbody>
 
         </table>
     </div>
 </div>
 
-<div style="position: fixed; right: 350px;" class="text-white">
-    <a href="/Peaks/Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New Peak</a>
-</div>
+@await Html.PartialAsync("_CreateItem", "Peaks")
 
