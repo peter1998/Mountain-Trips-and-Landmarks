@@ -525,10 +525,13 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             TrackCateogryURL = "https://media.istockphoto.com/photos/professional-bike-rider-jumping-during-downhill-ride-on-his-bicycle-picture-id1301763194",
                             Mountain  = mountainListStackInitializer.Pop(),
                             Peak = peakListStackInitializer.Pop(),
-                            landmark = landmarkseedListStackInitializer.Pop()
+                            landmark = landmarkseedListStackInitializer.Pop(),
+
+                            
                         },
                         new Track()
                         {
+                            
                             StartingPoint = "Panichishte village",
                             EndPoint = "Skakavitsa waterfall",
                             Highlights = "EarthTravellers",
@@ -593,6 +596,7 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
 
                             });
                 }
+                context.SaveChanges();
                 if (!context.Tracks_Peaks.Any())
                 {
                     context.Tracks_Peaks.AddRange(new List<Tracks_Peaks>()
@@ -630,6 +634,7 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
 
                             });
                 };
+                context.SaveChanges();
                 if (!context.Tracks_Landmarks.Any())
                 {
                     context.Tracks_Landmarks.AddRange(new List<Tracks_Landmarks>()

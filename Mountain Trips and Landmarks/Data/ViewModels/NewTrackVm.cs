@@ -11,6 +11,8 @@ namespace Mountain_Trips_and_Landmarks.Models
 {
     public class NewTrackVm
     {
+        public int Id { get; set; }
+
         [Display(Name = "Track Starting destination from: ")]
         [Required(ErrorMessage ="StartingPoint is required")]
         public string StartingPoint { get; set; }
@@ -42,15 +44,15 @@ namespace Mountain_Trips_and_Landmarks.Models
 
         [Display(Name = "Select peak(s)")]
         [Required(ErrorMessage = "Track peak(s) is required")]
-        public List<int> PeaksIds { get; set; }
+        public List<int?> PeaksIds { get; set; }
 
         [Display(Name = "Select landmark(s)")]
         [Required(ErrorMessage = "Track landmark(s) is required")]
-        public List<int> LandmarksIds { get; set; }
+        public List<int?> LandmarksIds { get; set; }
 
         [Display(Name = "Select mountain(s)")]
         [Required(ErrorMessage = "Track mountain(s) is required")]
-        public List<int> MountainsIds { get; set; }
+        public List<int?> MountainsIds { get; set; }
 
         //Mountain
         //Todo new migration and Uncomment to pass them in AddNewTrack - let's hope it works

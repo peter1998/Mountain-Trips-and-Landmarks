@@ -61,5 +61,59 @@ namespace Mountain_Trips_and_Landmarks.Controllers
             await _service.AddNewTrackAsync(track);
             return RedirectToAction(nameof(Index));
         }
+
+        //Get: Tracks/Edit
+        public async Task<IActionResult> Edit(int id)
+        {
+            var trackDetails = await _service.GetTrackByIdAsync(id);
+            if (trackDetails ==null) return View("NotFound");
+            
+           
+                var respone = new NewTrackVm()
+                {
+
+                    StartingPoint = trackDetails.StartingPoint,
+                    EndPoint = trackDetails.EndPoint,
+                    Highlights = trackDetails.Highlights,
+                    StartDate = trackDetails.StartDate,
+                    EndDate = trackDetails.EndDate,
+                    TrackCategory = trackDetails.TrackCategory,
+                    TrackCateogryURL = trackDetails.TrackCateogryURL,
+                    PeaksIds = trackDetails.Tracks_Peaks.Select(n=>n.PeakId).ToList(),
+                    LandmarksIds = trackDetails.Tracks_Landmarks.Select(m=>m.LandmarkId).ToList(),
+                    MountainsIds = trackDetails.Tracks_Mountains.Select(h=>h.MountainId).ToList()
+                };
+            
+            var trackDropdownsData = await _service.GetNewTrackDropdownsValues();
+
+            ViewBag.Peaks = new SelectList(trackDropdownsData.Peaks, "Id", "Name");
+            ViewBag.Mountains = new SelectList(trackDropdownsData.Mountains, "Id", "Name");
+            ViewBag.Landmarks = new SelectList(trackDropdownsData.Landmarks, "Id", "Name");
+
+            return View(respone);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, NewTrackVm track)
+        {
+            if (id != track.Id)
+            {
+                return View("NotFound");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var trackDropdownsData = await _service.GetNewTrackDropdownsValues();
+
+                ViewBag.Peaks = new SelectList(trackDropdownsData.Peaks, "Id", "Name");
+                ViewBag.Mountains = new SelectList(trackDropdownsData.Mountains, "Id", "Name");
+                ViewBag.Landmarks = new SelectList(trackDropdownsData.Landmarks, "Id", "Name");
+
+                return View(track);
+            }
+
+            await _service.UpdateTrackAsync(track);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -348,13 +348,13 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Mountain", "Mountain")
                         .WithMany("Tracks_Mountains")
                         .HasForeignKey("MountainId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Track", "Track")
                         .WithMany("Tracks_Mountains")
                         .HasForeignKey("TrackId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Mountain");

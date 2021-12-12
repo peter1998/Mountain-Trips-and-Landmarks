@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mountain_Trips_and_Landmarks.Migrations
 {
-    public partial class addedLandmarksViewInTracks : Migration
+    public partial class TrackUpdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -198,14 +198,12 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                         name: "FK_Tracks_Mountains_Mountains_MountainId",
                         column: x => x.MountainId,
                         principalTable: "Mountains",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Tracks_Mountains_Tracks_TrackId",
                         column: x => x.TrackId,
                         principalTable: "Tracks",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(

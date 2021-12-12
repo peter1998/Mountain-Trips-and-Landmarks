@@ -10,8 +10,8 @@ using Mountain_Trips_and_Landmarks.Data;
 namespace Mountain_Trips_and_Landmarks.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211211132655_addedLandmarksViewInTracks")]
-    partial class addedLandmarksViewInTracks
+    [Migration("20211212100725_TrackUpdate")]
+    partial class TrackUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -350,13 +350,13 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Mountain", "Mountain")
                         .WithMany("Tracks_Mountains")
                         .HasForeignKey("MountainId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Track", "Track")
                         .WithMany("Tracks_Mountains")
                         .HasForeignKey("TrackId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Mountain");

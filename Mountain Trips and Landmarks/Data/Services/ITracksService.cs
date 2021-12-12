@@ -15,5 +15,6 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
         Task<NewMovieDropdownsVM> GetNewTrackDropdownsValues();
 
         Task AddNewTrackAsync(NewTrackVm data);
+        Task UpdateTrackAsync(NewTrackVm data);
     }
 }

@@ -105,5 +105,72 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
 
             return await trackDetails;
         }
+
+        public async Task UpdateTrackAsync(NewTrackVm data)
+        {
+            var dbTrack = await _context.Tracks.FirstOrDefaultAsync(n => n.Id == data.Id);
+
+            if (dbTrack !=null)
+            {
+
+                dbTrack.TrackCateogryURL = data.TrackCateogryURL;
+                dbTrack.TrackCategory = data.TrackCategory;
+                dbTrack.StartingPoint = data.StartingPoint;
+                dbTrack.EndPoint = data.EndPoint;
+                dbTrack.Highlights = data.Highlights;
+                dbTrack.StartDate = data.StartDate;
+                dbTrack.EndDate = data.EndDate;
+                await _context.SaveChangesAsync();
+            }
+
+            //Remove existing peaks
+            var existingPeaksDb = _context.Tracks_Peaks.Where(n => n.Track.Id == data.Id).ToList();
+            _context.Tracks_Peaks.RemoveRange(existingPeaksDb);
+            await _context.SaveChangesAsync();
+            //Add Track Peaks 
+            foreach (var peakId in data.PeaksIds)
+            {
+                var newPeakTrack = new Tracks_Peaks()
+                {
+                    TrackId = data.Id,
+                    PeakId = peakId
+                };
+                await _context.Tracks_Peaks.AddAsync(newPeakTrack);
+            }
+
+            //Remove existing peaks
+            var existingLandmarksDb = _context.Tracks_Landmarks.Where(n => n.Track.Id == data.Id).ToList();
+            _context.Tracks_Landmarks.RemoveRange(existingLandmarksDb);
+            await _context.SaveChangesAsync();
+            //Add Track Peaks 
+            //Add Track Landmarks
+            foreach (var landmarkId in data.LandmarksIds)
+            {
+                var newLandmarkTrack = new Tracks_Landmarks()
+                {
+                    TrackId = data.Id,
+                    LandmarkId = landmarkId
+                };
+                await _context.Tracks_Landmarks.AddAsync(newLandmarkTrack);
+            }
+
+            //Remove existing peaks
+            var existingMountainsDb = _context.Tracks_Mountains.Where(n => n.Track.Id == data.Id).ToList();
+            _context.Tracks_Mountains.RemoveRange(existingMountainsDb);
+            await _context.SaveChangesAsync();
+            //Add Track Peaks 
+            //Add Track Mountains
+            foreach (var mountainId in data.MountainsIds)
+            {
+                var newMountainTrack = new Tracks_Mountains()
+                {
+                    TrackId = data.Id,
+                    MountainId = mountainId
+                };
+                await _context.Tracks_Mountains.AddAsync(newMountainTrack);
+            }
+            await _context.SaveChangesAsync();
+
+        }
     }
 }
