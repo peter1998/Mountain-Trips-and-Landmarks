@@ -22,8 +22,24 @@ namespace Mountain_Trips_and_Landmarks.Controllers
         public async Task<IActionResult> Index()
         {
             var allTracks = await _service.GetAllTracksAsync();
+
             return View(allTracks);
         }
+        public async Task<IActionResult> Filter(string searchString)
+        {
+            var allTracks = await _service.GetAllTracksAsync();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                var filteredReslt = allTracks.Where(n => n.StartingPoint.Contains(searchString) 
+                || n.EndPoint.Contains(searchString)).ToList();
+                return View("Index", filteredReslt);
+            }
+
+            return View("Index", allTracks);
+        }
+
+
 
         //Get: Tracks/Details/1
         public async Task<IActionResult> Details(int id)
