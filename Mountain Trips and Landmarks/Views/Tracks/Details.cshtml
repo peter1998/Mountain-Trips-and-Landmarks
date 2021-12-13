@@ -89,7 +89,7 @@ else if (DateTime.Now <= Model.StartDate)
                             <a class="btn btn-outline-primary float-right" asp-action="Index">
                                 Back to List
                             </a>
-                            <a class="btn btn-success text-white"><i class="bi bi-tree"></i>Add to Adventure List</a>
+                            <a class="btn btn-success text-white" asp-controller="Adventures" asp-action="AddToAdventures" asp-route-id="@Model.Id"><i class="bi bi-tree"></i>Add to Adventure List</a>
                         </p>
                     </div>
                 </div>

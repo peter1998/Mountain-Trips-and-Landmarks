@@ -75,5 +75,10 @@ namespace Mountain_Trips_and_Landmarks.Data
         public DbSet<Tracks_Mountains> Tracks_Mountains { get; set; }
         public DbSet<Landmarks_Mountains> Landmarks_Mountains { get; set; }
 
+        //Orders related tables
+        public DbSet<AdventureOrder> AdventureOrders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+
+        public DbSet<SelectorAdventureItem> SelectorAdventureItems { get; set; }
     }
 }

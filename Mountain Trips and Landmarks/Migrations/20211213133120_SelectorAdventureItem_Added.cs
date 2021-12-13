@@ -3,10 +3,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mountain_Trips_and_Landmarks.Migrations
 {
-    public partial class TrackUpdate : Migration
+    public partial class SelectorAdventureItem_Added : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AdventureOrders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdventureOrders", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Mountains",
                 columns: table => new
@@ -159,6 +173,56 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OrderItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Amounmt = table.Column<int>(type: "int", nullable: false),
+                    TrackId = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_AdventureOrders_TrackId",
+                        column: x => x.TrackId,
+                        principalTable: "AdventureOrders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Tracks_TrackId",
+                        column: x => x.TrackId,
+                        principalTable: "Tracks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SelectorAdventureItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TrackId = table.Column<int>(type: "int", nullable: true),
+                    PeakName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LandmarkName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Targets = table.Column<int>(type: "int", nullable: false),
+                    SelectorAdventureId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SelectorAdventureItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SelectorAdventureItems_Tracks_TrackId",
+                        column: x => x.TrackId,
+                        principalTable: "Tracks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tracks_Landmarks",
                 columns: table => new
                 {
@@ -242,6 +306,11 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 column: "MountainId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_TrackId",
+                table: "OrderItems",
+                column: "TrackId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Peaks_MountainId",
                 table: "Peaks",
                 column: "MountainId");
@@ -250,6 +319,11 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 name: "IX_Peaks_Mountains_MountainId",
                 table: "Peaks_Mountains",
                 column: "MountainId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SelectorAdventureItems_TrackId",
+                table: "SelectorAdventureItems",
+                column: "TrackId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tracks_LandmarkId",
@@ -288,7 +362,13 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 name: "Landmarks_Mountains");
 
             migrationBuilder.DropTable(
+                name: "OrderItems");
+
+            migrationBuilder.DropTable(
                 name: "Peaks_Mountains");
+
+            migrationBuilder.DropTable(
+                name: "SelectorAdventureItems");
 
             migrationBuilder.DropTable(
                 name: "Tracks_Landmarks");
@@ -298,6 +378,9 @@ namespace Mountain_Trips_and_Landmarks.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tracks_Peaks");
+
+            migrationBuilder.DropTable(
+                name: "AdventureOrders");
 
             migrationBuilder.DropTable(
                 name: "Tracks");

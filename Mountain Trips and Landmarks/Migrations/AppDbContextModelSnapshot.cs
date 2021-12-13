@@ -19,6 +19,24 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.AdventureOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AdventureOrders");
+                });
+
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Landmark", b =>
                 {
                     b.Property<int>("Id")
@@ -98,6 +116,29 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.ToTable("Mountains");
                 });
 
+            modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("Amounmt")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TrackId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TrackId");
+
+                    b.ToTable("OrderItems");
+                });
+
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Peak", b =>
                 {
                     b.Property<int>("Id")
@@ -144,6 +185,35 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.HasIndex("MountainId");
 
                     b.ToTable("Peaks_Mountains");
+                });
+
+            modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.SelectorAdventureItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("LandmarkName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PeakName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SelectorAdventureId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Targets")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TrackId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TrackId");
+
+                    b.ToTable("SelectorAdventureItems");
                 });
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Track", b =>
@@ -277,6 +347,25 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Navigation("Mountain");
                 });
 
+            modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.OrderItem", b =>
+                {
+                    b.HasOne("Mountain_Trips_and_Landmarks.Models.AdventureOrder", "AdventureOrder")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("TrackId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mountain_Trips_and_Landmarks.Models.Track", "Track")
+                        .WithMany()
+                        .HasForeignKey("TrackId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AdventureOrder");
+
+                    b.Navigation("Track");
+                });
+
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Peak", b =>
                 {
                     b.HasOne("Mountain_Trips_and_Landmarks.Models.Mountain", null)
@@ -301,6 +390,15 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Navigation("Mountain");
 
                     b.Navigation("Peak");
+                });
+
+            modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.SelectorAdventureItem", b =>
+                {
+                    b.HasOne("Mountain_Trips_and_Landmarks.Models.Track", "Track")
+                        .WithMany()
+                        .HasForeignKey("TrackId");
+
+                    b.Navigation("Track");
                 });
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Track", b =>
@@ -379,6 +477,11 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Navigation("Peak");
 
                     b.Navigation("Track");
+                });
+
+            modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.AdventureOrder", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("Mountain_Trips_and_Landmarks.Models.Landmark", b =>

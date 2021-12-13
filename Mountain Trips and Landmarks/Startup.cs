@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mountain_Trips_and_Landmarks.Data;
+using Mountain_Trips_and_Landmarks.Data.Adventure;
 using Mountain_Trips_and_Landmarks.Data.Services;
 using System;
 using System.Collections.Generic;
@@ -36,6 +38,11 @@ namespace Mountain_Trips_and_Landmarks
             services.AddScoped<IMountainsService, MountainsService>();
             services.AddScoped<ITracksService, TracksService>();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sc => SelectorAdventure.GetSelectorAdventure(sc));
+
+            services.AddSession();
+
             services.AddControllersWithViews();
         }
 
@@ -56,6 +63,7 @@ namespace Mountain_Trips_and_Landmarks
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthorization();
 
