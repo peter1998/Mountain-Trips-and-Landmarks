@@ -36,9 +36,15 @@ namespace Mountain_Trips_and_Landmarks.Data.Adventure
 
         public void addItemtoAdventure(Track track)
         {
+            if (_context.SelectorAdventureItems.Count()==0)
+            {
+                days = 0;
+            }
+            
+            
             var selectorAdventureItem = _context.SelectorAdventureItems
                 .FirstOrDefault(n => n.Track.Id == track.Id && n.SelectorAdventureId == SelectorAdventureId);
-
+            
             var peakName = "";
             var landmarkName = "";
             if (track.Tracks_Peaks.Count!=0)
@@ -90,10 +96,15 @@ namespace Mountain_Trips_and_Landmarks.Data.Adventure
                 {
                     _context.SelectorAdventureItems.Remove(selectorAdventureItem);
 
+                    
                 }
 
             }
             _context.SaveChanges();
+            if (_context.SelectorAdventureItems.Count() == 0)
+            {
+                days = 0;
+            }
         }
 
 
@@ -116,7 +127,11 @@ namespace Mountain_Trips_and_Landmarks.Data.Adventure
             }
             else
             {
-                days += (startDate - endDate).TotalDays;
+                days += (endDate - startDate).TotalDays;
+                if (days<0)
+                {
+                    days = 0;
+                }
             return days;
 
             }

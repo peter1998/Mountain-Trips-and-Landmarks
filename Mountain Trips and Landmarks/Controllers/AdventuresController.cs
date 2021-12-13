@@ -33,13 +33,26 @@ namespace Mountain_Trips_and_Landmarks.Controllers
             return View(response);
         }
 
-        public async Task<RedirectToActionResult> AddToAdventures(int id)
+        public async Task<IActionResult> AddToAdventures(int id)
         {
+            
             var item = await _tracksService.GetTrackByIdAsync(id);
 
             if (item != null)
             {
                 _selectorAdventure.addItemtoAdventure(item);
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> RemoveAdventures(int id)
+        {
+            var item = await _tracksService.GetTrackByIdAsync(id);
+
+            if (item != null)
+            {
+                _selectorAdventure.RemoveItemFromAdventure(item);
+                
             }
             return RedirectToAction(nameof(Index));
         }
