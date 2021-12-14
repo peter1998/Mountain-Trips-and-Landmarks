@@ -26,5 +26,11 @@ namespace Mountain_Trips_and_Landmarks.Data.Services
 
             return await mountainDetails;
         }
+
+
+        //public void DeleteMountainByIdAsync(int id)
+        //{
+        //    _context.Tracks_Mountains.Remove(id)
+        //}
     }
 }
