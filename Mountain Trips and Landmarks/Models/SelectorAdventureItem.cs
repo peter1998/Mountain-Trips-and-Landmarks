@@ -16,6 +16,8 @@ namespace Mountain_Trips_and_Landmarks.Models
 
         public string LandmarkName { get; set; }
 
+        
+
         public int Targets { get; set; }
 
         public string SelectorAdventureId { get; set; }

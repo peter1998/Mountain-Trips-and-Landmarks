@@ -67,10 +67,12 @@ namespace Mountain_Trips_and_Landmarks.Data.Adventure
                     Track = track,
                     PeakName = peakName,
                     LandmarkName = landmarkName,
-                    Targets = 1
+                    Targets = 1,
+                    
+                    
                     
                 };
-
+                GetSelectorAdventureItemsTotalDate();
                 _context.SelectorAdventureItems.Add(selectorAdventureItem);
             }
             else

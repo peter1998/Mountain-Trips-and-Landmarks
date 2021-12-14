@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Mountain_Trips_and_Landmarks.Data.Static;
 using Mountain_Trips_and_Landmarks.Models;
 using System;
 using System.Collections.Generic;
@@ -143,7 +145,7 @@ its kind on the Balkan Peninsula. The station has a small tourist tea house, as 
 
                 Stack<Peak> mountainseedStackInitializer = new Stack<Peak>(PeakList);
                 Stack<Peak> mountainseedListStackInitializer = new Stack<Peak>(PeakList);
-               
+
 
                 if (!context.Mountains.Any())
                 {
@@ -206,7 +208,7 @@ and 12 km wide. Its summit Golyam Debelets Peak rises to 1415 m",
                             MountainPictureURL = "https://media.istockphoto.com/photos/landscape-with-moraine-at-vitosha-mountain-bulgaria-picture-id1203508303",
                             TrekkingTime = 12,
                         }
-                    }) ;
+                    });
                 }
                 //context.Mountains.Peaks.AddRange(mountainseedStackInitializer)
                 // Needed list to give the Track the mountain property
@@ -324,7 +326,7 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             Country = "Bulgaria Lozen Mountain",
                         },
                 });
-                
+
 
                 if (!context.Landmarks.Any())
                 {
@@ -527,11 +529,11 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             Peak = peakListStackInitializer.Pop(),
                             landmark = landmarkseedListStackInitializer.Pop(),
 
-                            
+
                         },
                         new Track()
                         {
-                            
+
                             StartingPoint = "Panichishte village",
                             EndPoint = "Skakavitsa waterfall",
                             Highlights = "EarthTravellers",
@@ -701,6 +703,59 @@ ring the winter for skiing and snowboarding. It is also a popular tourist place 
                             });
                 }
                 context.SaveChanges();
+            }
+
+        }
+        public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
+        {
+            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+            {
+                //Roles
+                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
+                {
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                }
+                if (!await roleManager.RoleExistsAsync(UserRoles.User))
+                {
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+                }
+
+                //Users
+                var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                string admiUserEmail = "admin@mountains.com";
+                var adminUser = await userManager.FindByEmailAsync(admiUserEmail);
+
+                if (adminUser == null)
+                {
+                    var newAdminUser = new ApplicationUser()
+                    {
+                        FullName = "Admin User",
+                        UserName = "admin-user",
+                        Email = admiUserEmail,
+                        EmailConfirmed = true
+                    };
+                    await userManager.CreateAsync(newAdminUser, "Coding@1234?");
+                    await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+                }
+
+
+                string appUserEmail = "user@mountains.com";
+                var appUser = await userManager.FindByEmailAsync(appUserEmail);
+
+                if (appUser == null)
+                {
+                    var newAppUser = new ApplicationUser()
+                    {
+                        FullName = "Application User",
+                        UserName = "app-user",
+                        Email = appUserEmail,
+                        EmailConfirmed = true
+                    };
+                    await userManager.CreateAsync(newAppUser, "Coding@1234?");
+                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
+                }
             }
         }
     }
