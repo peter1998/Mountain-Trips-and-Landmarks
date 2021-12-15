@@ -18,6 +18,7 @@
                     <th>Selected targets</th>
                     <th>Track Starting Point</th>
                     <th>Track Ending Point</th>
+                    <th>Days for the Track</th>
                     <th>Trip Peak Names</th>
                     <th>Trip Landmarks Names</th>
                     <th>Targets</th>
@@ -28,30 +29,31 @@
             <tbody>
                 @foreach (var item in Model.SelectorAdventure.SelectorAdventureItems)
                 {
-                    <tr>
-                        <td class="align-middle">@item.Targets</td>
-                        <td class="align-middle">@item.Track.StartingPoint</td>
-                        <td class="align-middle">@item.Track.EndPoint</td>
-                        <td class="align-middle">@item.PeakName</td>
-                        <td class="align-middle">@item.LandmarkName</td>
-                        <td class="align-middle">@item.Targets</td>
-                        <td class="align-middle">
-                            <a class="text-danger" asp-controller="Adventures" asp-action="RemoveAdventures"
-                               asp-route-id="@item.Track.Id">
-                                <i class="bi bi-tree"></i>
-                            </a>
-                            |
-                            <a class="text-danger" asp-controller="Adventures" asp-action="RemoveAdventures"
-                               asp-route-id="@item.Track.Id">
-                                <i class="bi bi-tree"></i>
-                            </a>
-                            |
-                            <a class="text-danger" asp-controller="Adventures" asp-action="RemoveAdventures"
-                               asp-route-id="@item.Track.Id">
-                                <i class="bi bi-tree"></i>
-                            </a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="align-middle">@item.Targets</td>
+                    <td class="align-middle">@item.Track.StartingPoint</td>
+                    <td class="align-middle">@item.Track.EndPoint</td>
+                    <td class="align-middle">@item.TripDays</td>
+                    <td class="align-middle">@item.PeakName</td>
+                    <td class="align-middle">@item.LandmarkName</td>
+                    <td class="align-middle">@item.Targets</td>
+                    <td class="align-middle">
+                        <a class="text-danger" asp-controller="Adventures" asp-action="RemoveAdventures"
+                           asp-route-id="@item.Track.Id">
+                            <i class="bi bi-tree"></i>
+                        </a>
+                        |
+                        <a class="text-danger" asp-controller="Adventures" asp-action="RemoveAdventures"
+                           asp-route-id="@item.Track.Id">
+                            <i class="bi bi-tree"></i>
+                        </a>
+                        |
+                        <a class="text-danger" asp-controller="Adventures" asp-action="RemoveAdventures"
+                           asp-route-id="@item.Track.Id">
+                            <i class="bi bi-tree"></i>
+                        </a>
+                    </td>
+                </tr>
                 }
             </tbody>
             <tfoot>

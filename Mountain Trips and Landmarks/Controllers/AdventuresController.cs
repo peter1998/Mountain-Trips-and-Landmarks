@@ -13,6 +13,7 @@ namespace Mountain_Trips_and_Landmarks.Controllers
     {
         private readonly ITracksService _tracksService;
         private readonly SelectorAdventure _selectorAdventure;
+        public static  bool skipTotalDateIncrement;
 
         public AdventuresController(ITracksService tracksService, SelectorAdventure selectorAdventure)
         {
@@ -22,12 +23,16 @@ namespace Mountain_Trips_and_Landmarks.Controllers
 
         public IActionResult Index()
         {
+            
             var items = _selectorAdventure.GetSelectorAdventureItems();
+
             _selectorAdventure.SelectorAdventureItems = items;
 
+          
             var response = new SelectorAdventureVM()
             {
                 SelectorAdventure = _selectorAdventure,
+                //трето място извиквам TotalDate
                 SelectorAdventureTotal = _selectorAdventure.GetSelectorAdventureItemsTotalDate()
             };
             return View(response);

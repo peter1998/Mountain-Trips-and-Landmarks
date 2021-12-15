@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Mountain_Trips_and_Landmarks.Controllers;
 using Mountain_Trips_and_Landmarks.Models;
 using System;
 using System.Collections.Generic;
@@ -40,25 +41,22 @@ namespace Mountain_Trips_and_Landmarks.Data.Adventure
             {
                 days = 0;
             }
-            
-            
             var selectorAdventureItem = _context.SelectorAdventureItems
                 .FirstOrDefault(n => n.Track.Id == track.Id && n.SelectorAdventureId == SelectorAdventureId);
             
             var peakName = "";
             var landmarkName = "";
+           
             if (track.Tracks_Peaks.Count!=0)
             {
                 peakName = track.Tracks_Peaks.FirstOrDefault().Peak.Name;
             }
             
-
             if (track.Tracks_Landmarks.Count !=0)
             {
                 landmarkName = track.Tracks_Landmarks.FirstOrDefault().Landmark.Name;
             }
             
-
             if (selectorAdventureItem == null)
             {
                 selectorAdventureItem = new SelectorAdventureItem()
@@ -69,11 +67,24 @@ namespace Mountain_Trips_and_Landmarks.Data.Adventure
                     LandmarkName = landmarkName,
                     Targets = 1,
                     
-                    
-                    
                 };
-                GetSelectorAdventureItemsTotalDate();
+                
+                var startDate = selectorAdventureItem.Track.StartDate;
+                var endDate = selectorAdventureItem.Track.EndDate;
+                if ((endDate - startDate).TotalDays <= 0)
+                {
+                    selectorAdventureItem.TripDays = "This track is expired";
+                }
+                else
+                {
+                    selectorAdventureItem.TripDays = (endDate - startDate).TotalDays.ToString();
+                }
+                
                 _context.SelectorAdventureItems.Add(selectorAdventureItem);
+                //comment for delete below savechanges();
+                _context.SaveChanges();
+                //1-ВО място избирам и дублирам Дните
+                //GetSelectorAdventureItemsTotalDate();
             }
             else
             {
@@ -97,16 +108,14 @@ namespace Mountain_Trips_and_Landmarks.Data.Adventure
                 else
                 {
                     _context.SelectorAdventureItems.Remove(selectorAdventureItem);
-
-                    
                 }
 
             }
-            _context.SaveChanges();
             if (_context.SelectorAdventureItems.Count() == 0)
             {
                 days = 0;
             }
+            _context.SaveChanges();
         }
 
 
@@ -118,21 +127,37 @@ namespace Mountain_Trips_and_Landmarks.Data.Adventure
 
         public double GetSelectorAdventureItemsTotalDate()
         {
-            var startDate = _context.SelectorAdventureItems.Where(n => n.SelectorAdventureId == SelectorAdventureId).Select(n => n.Track.StartDate).FirstOrDefault();
-            var endDate = _context.SelectorAdventureItems.Where(n => n.SelectorAdventureId == SelectorAdventureId).Select(n => n.Track.EndDate).FirstOrDefault();
+            ////coment this
+            //var startDate = _context.SelectorAdventureItems.Where(n => n.SelectorAdventureId == SelectorAdventureId).Select(n => n.Track.StartDate).FirstOrDefault();
+            //var endDate = _context.SelectorAdventureItems.Where(n => n.SelectorAdventureId == SelectorAdventureId).Select(n => n.Track.EndDate).FirstOrDefault();
 
-            
 
-            if (_context.SelectorAdventureItems.Where(n => n.SelectorAdventureId == SelectorAdventureId) == null  )
+            if (_context.SelectorAdventureItems.Where(n => n.SelectorAdventureId == SelectorAdventureId) == null)
             {
                 return days;
             }
             else
             {
-                days += (endDate - startDate).TotalDays;
-                if (days<0)
+                //comment this
+              //  var whatdays2 = SelectorAdventureItems.Select(n => double.Parse(n.TripDays)).Sum();
+               // var whatdays = SelectorAdventureItems.Where(n => n.SelectorAdventureId == SelectorAdventureId).Select(n => double.Parse(n.TripDays));
+                days = 0;
+                double numericValue = 0.0;
+                //bool isNumber = double.TryParse(stringNumber, out numericValue);
+                foreach (var adventureItem in _context.SelectorAdventureItems)
+                {
+                    if (double.TryParse(adventureItem.TripDays, out numericValue))
+                    {
+                        days += numericValue;
+                    }
+                }
+
+              
+
+                if (days<=0)
                 {
                     days = 0;
+                    
                 }
             return days;
 

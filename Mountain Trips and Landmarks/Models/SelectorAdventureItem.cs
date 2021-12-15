@@ -16,7 +16,7 @@ namespace Mountain_Trips_and_Landmarks.Models
 
         public string LandmarkName { get; set; }
 
-        
+        public string TripDays { get; set; }
 
         public int Targets { get; set; }
 

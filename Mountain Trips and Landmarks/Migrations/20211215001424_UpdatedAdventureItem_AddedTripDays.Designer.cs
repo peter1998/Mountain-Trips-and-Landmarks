@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mountain_Trips_and_Landmarks.Data;
 
 namespace Mountain_Trips_and_Landmarks.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211215001424_UpdatedAdventureItem_AddedTripDays")]
+    partial class UpdatedAdventureItem_AddedTripDays
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -408,8 +410,8 @@ namespace Mountain_Trips_and_Landmarks.Migrations
                     b.Property<int?>("TrackId")
                         .HasColumnType("int");
 
-                    b.Property<string>("TripDays")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("TripDays")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
