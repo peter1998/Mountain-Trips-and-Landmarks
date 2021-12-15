@@ -28,20 +28,24 @@
                             <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark" asp-controller="Tracks" asp-action="Index"> <i class="badge-info bi-compass"></i>Tracks</a></button>
 
                         </li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-hover="dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bi bi-gear"></i> Management
-                            </a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-hover="dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bi bi-gear"></i> Management
+                                </a>
 
 
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-controller="Mountains" asp-action="Index"><i class="bi bi-image-alt"></i> Mountains</i></a>
-                                <a class="dropdown-item" asp-controller="Landmarks" asp-action="Index"><i class="bi bi-binoculars-fill"> Landmarks</i></a>
-                                <a class="dropdown-item" asp-controller="Peaks" asp-action="Index"><i class="bi bi-sunrise"> Peaks</i></a>
-                            </div>
-                        </li>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="Mountains" asp-action="Index"><i class="bi bi-image-alt">  Mountains</i></a>
+                                    <a class="dropdown-item" asp-controller="Landmarks" asp-action="Index"><i class="bi bi-binoculars-fill"> Landmarks</i></a>
+                                    <a class="dropdown-item" asp-controller="Peaks" asp-action="Index"><i class="bi bi-sunrise"> Peaks</i></a>
+                                </div>
+                            </li>
+                        }
                     </ul>
+                        
 
                     <form class="form-inline my-2 my-lg-0" asp-controller="Tracks" asp-action="Filter" style="padding-right: 25px;">
                         <input name="searchString" type="text" class="form-control" placeholder="Search for a track.." />
