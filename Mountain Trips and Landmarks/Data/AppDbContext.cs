@@ -52,7 +52,7 @@ namespace Mountain_Trips_and_Landmarks.Data
             modelBuilder.Entity<Tracks_Mountains>().HasOne(m => m.Track).WithMany(am => am.Tracks_Mountains).HasForeignKey(m => m.TrackId).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Tracks_Mountains>().HasOne(m => m.Mountain).WithMany(am => am.Tracks_Mountains).HasForeignKey(m => m.MountainId).OnDelete(DeleteBehavior.NoAction);
 
-            // ? samo landmarsk_Mountains mrunka purvo
+            
             modelBuilder.Entity<Landmarks_Mountains>().HasKey(am => new
             {
                 am.LandmarkId,

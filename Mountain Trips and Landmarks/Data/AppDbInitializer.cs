@@ -210,7 +210,7 @@ and 12 km wide. Its summit Golyam Debelets Peak rises to 1415 m",
                         }
                     });
                 }
-                //context.Mountains.Peaks.AddRange(mountainseedStackInitializer)
+               
                 // Needed list to give the Track the mountain property
 
                 mountainList.AddRange(new List<Mountain>()

@@ -81,10 +81,9 @@ namespace Mountain_Trips_and_Landmarks.Data.Adventure
                 }
                 
                 _context.SelectorAdventureItems.Add(selectorAdventureItem);
-                //comment for delete below savechanges();
+
                 _context.SaveChanges();
-                //1-ВО място избирам и дублирам Дните
-                //GetSelectorAdventureItemsTotalDate();
+              
             }
             else
             {
@@ -127,23 +126,17 @@ namespace Mountain_Trips_and_Landmarks.Data.Adventure
 
         public double GetSelectorAdventureItemsTotalDate()
         {
-            ////coment this
-            //var startDate = _context.SelectorAdventureItems.Where(n => n.SelectorAdventureId == SelectorAdventureId).Select(n => n.Track.StartDate).FirstOrDefault();
-            //var endDate = _context.SelectorAdventureItems.Where(n => n.SelectorAdventureId == SelectorAdventureId).Select(n => n.Track.EndDate).FirstOrDefault();
-
-
+        
             if (_context.SelectorAdventureItems.Where(n => n.SelectorAdventureId == SelectorAdventureId) == null)
             {
                 return days;
             }
             else
             {
-                //comment this
-              //  var whatdays2 = SelectorAdventureItems.Select(n => double.Parse(n.TripDays)).Sum();
-               // var whatdays = SelectorAdventureItems.Where(n => n.SelectorAdventureId == SelectorAdventureId).Select(n => double.Parse(n.TripDays));
+
                 days = 0;
                 double numericValue = 0.0;
-                //bool isNumber = double.TryParse(stringNumber, out numericValue);
+       
                 foreach (var adventureItem in _context.SelectorAdventureItems)
                 {
                     if (double.TryParse(adventureItem.TripDays, out numericValue))

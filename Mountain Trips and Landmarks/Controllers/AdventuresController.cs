@@ -32,7 +32,7 @@ namespace Mountain_Trips_and_Landmarks.Controllers
             var response = new SelectorAdventureVM()
             {
                 SelectorAdventure = _selectorAdventure,
-                //трето място извиквам TotalDate
+               
                 SelectorAdventureTotal = _selectorAdventure.GetSelectorAdventureItemsTotalDate()
             };
             return View(response);

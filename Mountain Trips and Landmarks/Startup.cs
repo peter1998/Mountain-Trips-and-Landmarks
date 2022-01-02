@@ -91,9 +91,9 @@ namespace Mountain_Trips_and_Landmarks
                     pattern: "{controller=Tracks}/{action=Index}/{id?}");
             });
 
-            //Seed database
+            //Seed database if need dumb data. 
 
-           AppDbInitializer.Seed(app);
+          // AppDbInitializer.Seed(app);
             AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
         }
     }

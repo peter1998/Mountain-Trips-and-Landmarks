@@ -95,7 +95,7 @@ namespace Mountain_Trips_and_Landmarks.Controllers
                 return View("NotFound");
             }
 
-            //mountainDetails.WHAT.REMOVEALL(x=> true); TOO MANY
+            
             mountainDetails.Peaks_Mountains.RemoveAll(x => true);
             mountainDetails.Landmarks_Mountains.RemoveAll(x => true);  
             mountainDetails.Tracks_Mountains.RemoveAll(x => true);

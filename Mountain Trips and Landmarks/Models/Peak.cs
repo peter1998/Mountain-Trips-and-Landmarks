@@ -32,9 +32,7 @@ namespace Mountain_Trips_and_Landmarks.Models
 
         //Track
        public List<Track> Tracks { get; set; }
-        //public int PeakId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        //  public List<Mountain> Mountains { get; set; }
-
+       
 
     }
 }
