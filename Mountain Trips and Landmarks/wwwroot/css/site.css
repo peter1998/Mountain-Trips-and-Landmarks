@@ -38,9 +38,11 @@ html {
   }
 }
 
-@media (min-width: 768px) and (max-width:1024px){
-    html {
-        font-size:16px;
+/*white-space: nowrap;*/
+@media (min-width: 768px) and (max-width:1150px){
+    .container-fluid {
+        font-size: 13px;
+        
     }
 }
 
@@ -75,6 +77,7 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
     font-size: 1rem;
+    /*background-color:lightgreen;*/
 }
 .footer {
   position: absolute;
