@@ -32,6 +32,9 @@ namespace Mountain_Trips_and_Landmarks.Models
 
         public string TrackCateogryURL { get; set; }
 
+        public float Longitude { get; set; }
+        public float Latitude { get; set; }
+
         //Relationships
 
         public List<Tracks_Peaks> Tracks_Peaks { get; set; }

@@ -77,7 +77,10 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
     font-size: 1rem;
-    /*background-color:lightgreen;*/
+    background-image: url("../img/cool-background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:100% 100%;
 }
 .footer {
   position: absolute;

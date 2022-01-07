@@ -94,6 +94,8 @@ else if (DateTime.Now <= Model.StartDate)
                     </div>
                 </div>
                 @*Adding Google Map*@
+
+                @*console.log(@Model.Latitude.ToString().Replace(",","."))*@
                 <div class="row">
                     
                     <div class="col-md-12" style="height: 300px;">
@@ -106,7 +108,7 @@ else if (DateTime.Now <= Model.StartDate)
                                 
 
                                 map = new google.maps.Map(document.getElementById("map"), {
-                                    center: { lat: 42.56309, lng: 23.27934 },
+                                    center: { lat: @Model.Latitude.ToString().Replace(",", "."), lng: @Model.Longitude.ToString().Replace(",", ".") },
                                     zoom: 12
                                 });
                             }
